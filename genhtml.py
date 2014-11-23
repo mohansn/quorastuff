@@ -32,10 +32,11 @@ def get_topics_path (user):
     topics_path = ''
     if qurl in user:
         topics_path = user + '/topics' # If user provides the whole user profile link
-    if qurls in user:
+    elif qurls in user:
         topics_path = user + '/topics'
     else:
-        topics_path = qurl + '/topics'
+        topics_path = qurls + user + '/topics'
+
     return topics_path
 
 
