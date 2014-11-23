@@ -61,12 +61,7 @@ def get_topic_data (user):
     return (links,topic_data)
 
 def get_topic_data_json (user):
-    print ("From get_topic_data_json, got user : ");
-    print (user)
-
     topics_path = get_topics_path (user)
-    print ("topics_path\n")
-    print (topics_path)
     r = requests.get(topics_path, cookies = qcookies)
     if (r.status_code != 200):
         r.raise_for_status()

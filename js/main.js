@@ -1,7 +1,5 @@
 $(document).ready(function () {
     $( "form" ).submit(function( event ) {
-        console.log ("From Jquery");
-        console.log ($("#textinput").val());
         $.ajax({
             url:"/getdata",
             type: 'get',
