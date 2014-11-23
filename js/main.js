@@ -8,10 +8,10 @@ $(document).ready(function () {
                 async:false
             },
             success: function (data) {
-                $('body').empty();
-                $('body').html("<div id=\"chart\"></div>");
+                $('body').append("<div id=\"chart\"></div>");
                 // Send to D3 for plot
                 drawPieChart (JSON.parse(data));
+                $('body').scrollTo($('#chart'),{duration:1000});
             },
             error: function (data) {
                 // TODO: Failback using local HTML files
