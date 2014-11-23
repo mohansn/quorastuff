@@ -7,7 +7,7 @@ function drawPieChart (piedata)
         },
         header: {
             title: {
-                text: "Stats for Quorans of the Day",
+                text: "Here is your pie!",
                 fontSize: 30
             },
             subtitle: {
