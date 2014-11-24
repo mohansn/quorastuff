@@ -90,6 +90,18 @@ def get_topic_data_json (user):
     
     return json.dumps (json_data)
 
+def get_profile_pic_path (user):
+    assert ((qurl in user) or (qurls in user))
+    r = requests.get (user) # "user" is the profile url
+    if (r.status_code != 200):
+        r.raise_for_status()
+    soup = BeautifulSoup(r.text)
+    img_path = soup.find (class_ = "profile_photo_img").get("src")
+    if img_path is not None:
+        return img_path
+    else:
+        return ""
+
 
 """ Combine data and fixed templates to create output file """
 def write_output_file (user):

@@ -1,7 +1,7 @@
 from google.appengine.api import users
 import webapp2
 import cgi
-from genhtml import get_topic_data_json
+from genhtml import get_topic_data_json, get_profile_pic_path
 from data import qurl
 
 class MainPage(webapp2.RequestHandler):
@@ -45,6 +45,11 @@ class GetData (webapp2.RequestHandler):
         print (pname)
         return self.response.write (get_topic_data_json (pname))
 
+class GetProfilePic (webapp2.RequestHandler):
+    def get (self):
+        pname = cgi.escape (self.request.get ('user'))
+        return self.response.write (get_profile_pic_path (pname))
+
 class PieCharts (webapp2.RequestHandler):
     def get (self):
         with open ('getpie.html', 'r') as fp:
@@ -58,5 +63,6 @@ application = webapp2.WSGIApplication([
     ('/howdy', Howdy),
     ('/MasterSharath', MasterSharath),
     ('/getdata', GetData),
+    ('/getpic', GetProfilePic),
     ('/GetSomePie', PieCharts)
 ], debug=True)
