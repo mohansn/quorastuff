@@ -1,0 +1,9 @@
+#chart {
+    float:right;
+    display:inline-block;
+}
+
+#pp {
+    float:left;
+    display:inline-block;
+}

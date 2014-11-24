@@ -1,8 +1,10 @@
 <html>
+  <title> Pie Charts For Everyone! </title>
   <head>
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="css/pie.css">
     <script src="js/jquery-2.1.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/d3.min.js"></script>
@@ -18,28 +20,32 @@
     </style>
   </head>
   <body>
-    <form class="form-horizontal">
-      <fieldset>
-        <!-- Form Name -->
-        <legend><a href="http://quorastuff.appspot.com/GetSomePie">Get Some Pie!</a></legend>
+    <div id="form">
+      <form class="form-horizontal">
+        <fieldset>
+          <!-- Form Name -->
+          <legend><a href="http://quorastuff.appspot.com/GetSomePie">Get Some Pie!</a></legend>
 
-        <!-- Text input-->
-        <div class="control-group">
-          <label class="control-label" for="textinput">Quora Profile URL</label>
-          <div class="controls">
-            <input id="textinput" name="textinput" type="text" placeholder="https://www.quora.com/Aditya-Bhushan-Dwivedi-1" class="input-xxlarge" required="">
+          <!-- Text input-->
+          <div class="control-group">
+            <label class="control-label" for="textinput">Quora Profile URL</label>
+            <div class="controls">
+              <input id="textinput" name="textinput" type="text" placeholder="https://www.quora.com/Aditya-Bhushan-Dwivedi-1" class="input-xxlarge" required="">
     
+            </div>
           </div>
-        </div>
 
-        <!-- Button -->
-        <div class="control-group">
-          <label class="control-label" for="singlebutton"></label>
-          <div class="controls">
-            <button id="singlebutton" name="singlebutton" class="btn btn-primary">Get Pie Chart</button>
+          <!-- Button -->
+          <div class="control-group">
+            <label class="control-label" for="singlebutton"></label>
+            <div class="controls">
+              <button id="singlebutton" name="singlebutton" class="btn btn-primary">Get Pie Chart</button>
+            </div>
           </div>
-        </div>
-      </fieldset>
-    </form>
+        </fieldset>
+      </form>
+    </div>
+    <div id="pp"></div>
+    <div id="chart"></div>
   </body>
 </html>
