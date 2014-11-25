@@ -6,23 +6,12 @@ from data import qurl
 
 class MainPage(webapp2.RequestHandler):
     def get(self):
-        self.response.write("<html><body><h1>Nothing here yet!</h1></body></html>")
-
-class SM (webapp2.RequestHandler):
-    def get(self):
-        fp = open('Shreesha-Mokhashi.html','r')
+        fp = open('index.html','r')
         if (fp):
             html = fp.read()
             self.response.write(html)
             fp.close()
 
-class AP (webapp2.RequestHandler):
-    def get(self):
-        fp = open('ap.html','r')
-        if (fp):
-            html = fp.read()
-            self.response.write(html)
-            fp.close()
 
 class Howdy (webapp2.RequestHandler):
     def get(self):
@@ -58,8 +47,6 @@ class PieCharts (webapp2.RequestHandler):
             
 application = webapp2.WSGIApplication([
     ('/', MainPage),
-    ('/Shreesha-Mokhashi', SM),
-    ('/Aalhad-Parulekar', AP),
     ('/howdy', Howdy),
     ('/MasterSharath', MasterSharath),
     ('/getdata', GetData),
