@@ -2,6 +2,7 @@ $(document).ready(function () {
     $( "form" ).submit(function( event ) {
         $('#chart').empty();
         $('#pp').empty();
+        $('#chart-image').empty()
 
         $.ajax({
             url:"/getdata",
@@ -28,6 +29,7 @@ $(document).ready(function () {
                 // Send to D3 for plot
                 drawPieChart (JSON.parse(data));
                 $('body').scrollTo($('#chart'),{duration:1000});
+                $('#chart').append( "<button id='chart-save'>Get Chart Image</button>");
             },
             error: function (data) {
                 // TODO: Failback using local HTML files
@@ -37,4 +39,16 @@ $(document).ready(function () {
         });
         event.preventDefault();
     });
+
+    $('#chart').on('click', '#chart-save', function(){
+      svgAsDataUri($('#chart svg')[0], null, function(uri) {
+        $('#chart-image').html('<img width=250 src="' + uri + '" />');
+        $('#chart-image').append("<button id='image-save'>Save Image</button>");
+      });
+    });
+
+    $('#chart-image').on('click', '#image-save', function(){
+      saveSvgAsPng($('#chart svg')[0], $("#textinput").val().replace('-','_')+".png", 2);
+    });
+
 });

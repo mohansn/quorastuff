@@ -7,3 +7,12 @@
     float:left;
     display:inline-block;
 }
+
+#chart-save {
+  clear: both;
+  float: left;
+}
+
+#chart-image img {
+  border: 1px solid black;
+}
