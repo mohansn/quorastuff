@@ -18,7 +18,7 @@ function drawPieChart (piedata)
         tooltips: {
             enabled: true,
             type: "placeholder",
-            string: "{label}: {percentage}%",
+            string: "{label}: {value} answers",
             styles: {
                 fadeInSpeed: 200,
                 backgroundColor: "AliceBlue",
