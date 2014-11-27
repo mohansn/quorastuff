@@ -15,6 +15,21 @@ function drawPieChart (piedata)
                 fontSize: 18
             }
         },
+        tooltips: {
+            enabled: true,
+            type: "placeholder",
+            string: "{label}: {percentage}%",
+            styles: {
+                fadeInSpeed: 200,
+                backgroundColor: "AliceBlue",
+                backgroundOpacity: 0.8,
+                color: "Chocolate",
+                borderRadius: 4,
+                font: "verdana",
+                fontSize: 16,
+                padding: 20
+            }
+        },
         data: {
             content: piedata
         },
