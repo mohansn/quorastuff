@@ -2,6 +2,7 @@
   <title> Pie Charts For Everyone! </title>
   <head>
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
     <link rel="stylesheet" type="text/css" href="css/pie.css">
@@ -14,6 +15,7 @@
     <script src="js/pie.js"></script>
     <script src="js/main.js"></script>
 
+
     <style>
       body {
         margin-left: 20px;
@@ -21,33 +23,55 @@
     </style>
   </head>
   <body>
-    <div id="form">
-      <form class="form-horizontal">
-        <fieldset>
-          <!-- Form Name -->
-          <legend><a href="http://quorastuff.appspot.com/GetSomePie">Get Some Pie!</a></legend>
+  <div class="container"> 
+   <div class="row">
+      <div id="form">
+        <form class="form-horizontal">
+          <fieldset>
+            <!-- Form Name -->
+            <h3><a href="http://quorastuff.appspot.com/GetSomePie">Get Some Pie!</a></h3>
+            <hr id='horz' />
 
-          <!-- Text input-->
-          <div class="control-group">
-            <label class="control-label" for="textinput">Quora Profile URL</label>
-            <div class="controls">
-              <input id="textinput" name="textinput" type="text" placeholder="https://www.quora.com/Aditya-Bhushan-Dwivedi-1" class="input-xxlarge" required="">
-    
+            <!-- Text input-->
+            <div class="control-group">
+              <label class="control-label" for="textinput">Quora Profile URL</label>
+              <div class="controls">
+                <input id="textinput" name="textinput" type="text" placeholder="https://www.quora.com/Aditya-Bhushan-Dwivedi-1" class="input-xxlarge" required="">
+      
+              </div>
             </div>
-          </div>
 
-          <!-- Button -->
-          <div class="control-group">
-            <label class="control-label" for="singlebutton"></label>
-            <div class="controls">
-              <button id="singlebutton" name="singlebutton" class="btn btn-primary">Get Pie Chart</button>
+            <!-- Button -->
+            <div class="control-group">
+              <label class="control-label" for="singlebutton"></label>
+              <div class="controls">
+                <button id="singlebutton" name="singlebutton" class="btn btn-primary">Get Pie Chart</button>
+                
+              </div>
             </div>
-          </div>
-        </fieldset>
-      </form>
+          </fieldset>
+          <hr/>
+        </form>
+      </div>
+    </div>  
+    <div class="row">
+          <div  id="pp"></div>
+          <div  id="chart"></div>
+         
     </div>
-    <div id="pp"></div>
-    <div id="chart"></div>
-    <div id="chart-image"></div>
+      <div id="myModal" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+ 
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Your image is ready!</h4>
+                </div>
+                <div class="modal-body">
+                     <div  id="chart-image"></div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dalog -->
+</div><!-- /.modal -->
+  </div>
   </body>
 </html>

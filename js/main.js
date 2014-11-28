@@ -29,7 +29,7 @@ $(document).ready(function () {
                 // Send to D3 for plot
                 drawPieChart (JSON.parse(data));
                 $('body').scrollTo($('#chart'),{duration:1000});
-                $('#chart').append( "<button id='chart-save'>Get Chart Image</button>");
+                $('#chart').append( "<button class='btn btn-primary' data-toggle='modal' data-target='#myModal' id='chart-save'>Get Chart Image</button>");
             },
             error: function (data) {
                 // TODO: Failback using local HTML files
@@ -43,7 +43,7 @@ $(document).ready(function () {
     $('#chart').on('click', '#chart-save', function(){
       svgAsDataUri($('#chart svg')[0], null, function(uri) {
         $('#chart-image').html('<img width=250 src="' + uri + '" />');
-        $('#chart-image').append("<button id='image-save'>Save Image</button>");
+        $('#chart-image').append("<button class='btn btn-primary' id='image-save'>Save Image</button> <button class='btn btn-danger' data-dismiss='modal'>Cancel</button>");
       });
     });
 
