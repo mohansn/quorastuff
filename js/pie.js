@@ -39,4 +39,7 @@ function drawPieChart (piedata)
             }
         }
     });
+
+    $('#chart svg').prepend('<rect width="100%" height="100%" style="fill:rgb(255,255,255);" />');
+ 
 }
