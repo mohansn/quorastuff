@@ -3,12 +3,27 @@ $(document).ready(function () {
         $('#chart').empty();
         $('#pp').empty();
         $('#chart-image').empty()
+        
+        var user_url = $("#textinput").val();
+        if (user_url.match (/qr.ae/) {
+            $.ajax ({
+                url: "/getfullurl",
+                type: 'get',
+                data: {
+                    url: user_url,
+                    async: false
+                },
+                success : function (data) {
+                    user_url = data;
+                }
+            });
+        }
 
         $.ajax({
             url:"/getdata",
             type: 'get',
             data: {
-                'user': $("#textinput").val(),
+                'user': user_url,
                 async:false
             },
             success: function (data) {

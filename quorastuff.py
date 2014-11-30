@@ -39,6 +39,11 @@ class GetProfilePic (webapp2.RequestHandler):
         pname = cgi.escape (self.request.get ('user'))
         return self.response.write (get_profile_pic_path (pname))
 
+class GetFullURL (webapp2.RequestHandler):
+    def get (self):
+        url = cgi.escape (self.request.get ('url'))
+        return self.response.write (get_full_url (url))
+
 class PieCharts (webapp2.RequestHandler):
     def get (self):
         with open ('getpie.html', 'r') as fp:
@@ -51,5 +56,6 @@ application = webapp2.WSGIApplication([
     ('/MasterSharath', MasterSharath),
     ('/getdata', GetData),
     ('/getpic', GetProfilePic),
+    ('/getfullurl', GetFullURL),
     ('/GetSomePie', PieCharts)
 ], debug=True)

@@ -102,6 +102,11 @@ def get_profile_pic_path (user):
     else:
         return ""
 
+def get_full_url (short_url):
+    r = requests.get (short_url)
+    full_url = r.url.split('?')[0]
+    print "Full URL is %s \n" % full_url
+    return full_url
 
 """ Combine data and fixed templates to create output file """
 def write_output_file (user):
