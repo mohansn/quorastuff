@@ -5,7 +5,9 @@ $(document).ready(function () {
         $('#chart-image').empty()
         
         var user_url = $("#textinput").val();
-        if (user_url.match (/qr.ae/) {
+        if (user_url.match (/qr.ae/)) {
+            console.log ("Got a short URL");
+            console.log (user_url);
             $.ajax ({
                 url: "/getfullurl",
                 type: 'get',
@@ -15,6 +17,7 @@ $(document).ready(function () {
                 },
                 success : function (data) {
                     user_url = data;
+                    console.log ("Now URL is " + user_url);
                 }
             });
         }
