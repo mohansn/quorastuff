@@ -30,15 +30,12 @@ def get_quora_cookies_doesnt_work ():
 
 def get_topics_path (user):
     topics_path = ''
-    if qurl in user:
-        topics_path = user + '/topics' # If user provides the whole user profile link
-    elif qurls in user:
-        topics_path = user + '/topics'
+    if ('quora.com/' in user):
+        topics_path = qurls + user.split('quora.com/')[1] + '/topics'
     else:
         topics_path = qurls + user + '/topics'
 
     return topics_path
-
 
 def get_topic_data (user):
     topics_path = get_topics_path (user)
