@@ -1,0 +1,326 @@
+@font-face {
+	font-family: 'AguafinaScript-Regular';
+	src:url('fonts/AguafinaScript-Regular.ttf');
+}
+@font-face {
+	font-family: 'AlexBrush-Regular';
+	src:url('fonts/AlexBrush-Regular.ttf');
+}
+@font-face {
+	font-family: 'Allura-Regular';
+	src:url('fonts/Allura-Regular.otf');
+}
+@font-face {
+	font-family: 'AquilineTwo';
+	src:url('fonts/AquilineTwo.ttf');
+}
+@font-face {
+	font-family: 'Arizonia-Regular';
+	src:url('fonts/Arizonia-Regular.ttf');
+}
+@font-face {
+	font-family: 'Bilbo-Regular';
+	src:url('fonts/Bilbo-Regular.otf');
+}
+@font-face {
+	font-family: 'BilboSwashCaps-Regular';
+	src:url('fonts/BilboSwashCaps-Regular.otf');
+}
+/*
+@font-face {
+	font-family: 'BRUSHSTP';
+	src:url('fonts/BRUSHSTP.ttf');
+}
+*/
+@font-face {
+	font-family: 'cac_champagne';
+	src:url('fonts/cac_champagne.ttf');
+}
+@font-face {
+	font-family: 'Calligraffiti';
+	src:url('fonts/Calligraffiti.ttf');
+}
+@font-face {
+	font-family: 'Carrington';
+	src:url('fonts/Carrington.ttf');
+}
+@font-face {
+	font-family: 'Chantelli_Antiqua';
+	src:url('fonts/Chantelli_Antiqua.ttf');
+}
+@font-face {
+	font-family: 'Dearest_open';
+	src:url('fonts/Dearest_open.ttf');
+}
+@font-face {
+	font-family: 'Dearest_outline';
+	src:url('fonts/Dearest_outline.ttf');
+}
+@font-face {
+	font-family: 'Dearest';
+	src:url('fonts/Dearest.ttf');
+}
+@font-face {
+	font-family: 'Deutsch';
+	src:url('fonts/Deutsch.ttf');
+}
+@font-face {
+	font-family: 'DobkinPlain';
+	src:url('fonts/DobkinPlain.ttf');
+}
+@font-face {
+	font-family: 'Dynalight-Regular';
+	src:url('fonts/Dynalight-Regular.otf');
+}
+/*
+@font-face {
+	font-family: 'Embossed_Black_Normal';
+	src:url('fonts/Embossed_Black_Normal.ttf');
+}
+@font-face {
+	font-family: 'Embossed_Black_Wide';
+	src:url('fonts/Embossed_Black_Wide.ttf');
+}
+*/
+@font-face {
+	font-family: 'EuphoriaScript-Regular';
+	src:url('fonts/EuphoriaScript-Regular.otf');
+}
+@font-face {
+	font-family: 'Felipa-Regular';
+	src:url('fonts/Felipa-Regular.otf');
+}
+@font-face {
+	font-family: 'FLORLI__';
+	src:url('fonts/FLORLI__.ttf');
+}
+@font-face {
+	font-family: 'FLORLRG_';
+	src:url('fonts/FLORLRG_.ttf');
+}
+@font-face {
+	font-family: 'freebooterscript';
+	src:url('fonts/freebooterscript.ttf');
+}
+/*
+@font-face {
+	font-family: 'FREEBSCA';
+	src:url('fonts/FREEBSCA.ttf');
+}
+*/
+@font-face {
+	font-family: 'GenzschEtHeyseAlt';
+	src:url('fonts/GenzschEtHeyseAlt.ttf');
+}
+@font-face {
+	font-family: 'GenzschEtHeyse';
+	src:url('fonts/GenzschEtHeyse.ttf');
+}
+@font-face {
+	font-family: 'Gondola_SD-Swash';
+	src:url('fonts/Gondola_SD-Swash.ttf');
+}
+@font-face {
+	font-family: 'Gondola_SD';
+	src:url('fonts/Gondola_SD.ttf');
+}
+@font-face {
+	font-family: 'goodfoot';
+	src:url('fonts/goodfoot.ttf');
+}
+@font-face {
+	font-family: 'gothic_ultra_ot';
+	src:url('fonts/gothic_ultra_ot.otf');
+}
+@font-face {
+	font-family: 'GreatVibes-Regular';
+	src:url('fonts/GreatVibes-Regular.otf');
+}
+@font-face {
+	font-family: 'HerrVonMuellerhoff-Regular';
+	src:url('fonts/HerrVonMuellerhoff-Regular.otf');
+}
+/*
+@font-face {
+	font-family: 'Incised_Black';
+	src:url('fonts/Incised_Black.ttf');
+}
+@font-face {
+	font-family: 'Incised_Black_Wide';
+	src:url('fonts/Incised_Black_Wide.ttf');
+}
+*/
+@font-face {
+	font-family: 'Italianno-Regular-OTF';
+	src:url('fonts/Italianno-Regular-OTF.otf');
+}
+@font-face {
+	font-family: 'journal';
+	src:url('fonts/journal.ttf');
+}
+@font-face {
+	font-family: 'KaushanScript-Regular';
+	src:url('fonts/KaushanScript-Regular.otf');
+}
+@font-face {
+	font-family: 'Kells_SD';
+	src:url('fonts/Kells_SD.ttf');
+}
+@font-face {
+	font-family: 'Kingthings_Calligraphica_2';
+	src:url('fonts/Kingthings_Calligraphica_2.ttf');
+}
+@font-face {
+	font-family: 'Kingthings_Calligraphica_Italic';
+	src:url('fonts/Kingthings_Calligraphica_Italic.ttf');
+}
+@font-face {
+	font-family: 'Kingthings_Calligraphica_Light';
+	src:url('fonts/Kingthings_Calligraphica_Light.ttf');
+}
+@font-face {
+	font-family: 'Kingthings_Exeter';
+	src:url('fonts/Kingthings_Exeter.ttf');
+}
+@font-face {
+	font-family: 'Kingthings_Foundation';
+	src:url('fonts/Kingthings_Foundation.ttf');
+}
+@font-face {
+	font-family: 'Kingthings_Italique';
+	src:url('fonts/Kingthings_Italique.ttf');
+}
+@font-face {
+	font-family: 'Kingthings_Petrock_light';
+	src:url('fonts/Kingthings_Petrock_light.ttf');
+}
+@font-face {
+	font-family: 'Kingthings_Petrock';
+	src:url('fonts/Kingthings_Petrock.ttf');
+}
+/*
+@font-face {
+	font-family: 'Kingthings_Wrote';
+	src:url('fonts/Kingthings_Wrote.ttf');
+}
+*/
+@font-face {
+	font-family: 'Landliebe';
+	src:url('fonts/Landliebe.ttf');
+}
+@font-face {
+	font-family: 'LeckerliOne-Regular';
+	src:url('fonts/LeckerliOne-Regular.otf');
+}
+@font-face {
+	font-family: 'Lobster_1.3';
+	src:url('fonts/Lobster_1.3.otf');
+}
+@font-face {
+	font-family: 'LobsterTwo-BoldItalic';
+	src:url('fonts/LobsterTwo-BoldItalic.otf');
+}
+@font-face {
+	font-family: 'LobsterTwo-Bold';
+	src:url('fonts/LobsterTwo-Bold.otf');
+}
+@font-face {
+	font-family: 'LobsterTwo-Italic';
+	src:url('fonts/LobsterTwo-Italic.otf');
+}
+@font-face {
+	font-family: 'LobsterTwo-Regular';
+	src:url('fonts/LobsterTwo-Regular.otf');
+}
+@font-face {
+	font-family: 'Miama';
+	src:url('fonts/Miama.otf');
+}
+@font-face {
+	font-family: 'Montez-Regular';
+	src:url('fonts/Montez-Regular.ttf');
+}
+@font-face {
+	font-family: 'Mothproof_Script';
+	src:url('fonts/Mothproof_Script.ttf');
+}
+@font-face {
+	font-family: 'Mutlu__Ornamental';
+	src:url('fonts/Mutlu__Ornamental.ttf');
+}
+/*
+@font-face {
+	font-family: 'OrotundCaps';
+	src:url('fonts/OrotundCaps.ttf');
+}
+@font-face {
+	font-family: 'Orotund';
+	src:url('fonts/Orotund.ttf');
+}
+*/
+@font-face {
+	font-family: 'Pacifico';
+	src:url('fonts/Pacifico.ttf');
+}
+/*
+@font-face {
+	font-family: 'Plain_Black';
+	src:url('fonts/Plain_Black.ttf');
+}
+@font-face {
+	font-family: 'Plain_Black_Wide';
+	src:url('fonts/Plain_Black_Wide.ttf');
+}
+*/
+@font-face {
+	font-family: 'promocyja';
+	src:url('fonts/promocyja.otf');
+}
+@font-face {
+	font-family: 'QumpellkaNo12';
+	src:url('fonts/QumpellkaNo12.otf');
+}
+@font-face {
+	font-family: 'Qwigley-Regular';
+	src:url('fonts/Qwigley-Regular.ttf');
+}
+@font-face {
+	font-family: 'RechtmanPlain';
+	src:url('fonts/RechtmanPlain.ttf');
+}
+/*
+@font-face {
+	font-family: 'Roman_SD';
+	src:url('fonts/Roman_SD.ttf');
+}
+*/
+@font-face {
+	font-family: 'Ruthie-Regular-OTF';
+	src:url('fonts/Ruthie-Regular-OTF.otf');
+}
+/*
+@font-face {
+	font-family: 'scriptina_alt';
+	src:url('fonts/scriptina_alt.ttf');
+}
+*/
+@font-face {
+	font-family: 'Scriptina_Pro';
+	src:url('fonts/Scriptina_Pro.otf');
+}
+@font-face {
+	font-family: 'scriptina';
+	src:url('fonts/scriptina.ttf');
+}
+@font-face {
+	font-family: 'Sevillana-Regular';
+	src:url('fonts/Sevillana-Regular.ttf');
+}
+@font-face {
+	font-family: 'Windsong';
+	src:url('fonts/Windsong.ttf');
+}
+@font-face {
+	font-family: 'Yellowtail-Regular';
+	src:url('fonts/Yellowtail-Regular.otf');
+}

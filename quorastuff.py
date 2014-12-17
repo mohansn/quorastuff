@@ -27,6 +27,13 @@ class MasterSharath (webapp2.RequestHandler):
             self.response.write(fp.read())
             fp.close()
 
+class Calligraphy (webapp2.RequestHandler):
+    def get(self):
+        with open('calligraphy.html','r') as fp:
+            self.response.write(fp.read())
+            fp.close()
+
+            
 class GetData (webapp2.RequestHandler):
     def get(self):
         pname = cgi.escape(self.request.get ('user'))
@@ -54,6 +61,7 @@ application = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/howdy', Howdy),
     ('/MasterSharath', MasterSharath),
+    ('/calligraphyAnswer', Calligraphy),
     ('/getdata', GetData),
     ('/getpic', GetProfilePic),
     ('/getfullurl', GetFullURL),
