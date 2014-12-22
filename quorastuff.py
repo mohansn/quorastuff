@@ -33,6 +33,11 @@ class Calligraphy (webapp2.RequestHandler):
             self.response.write(fp.read())
             fp.close()
 
+class Converse (webapp2.RequestHandler):
+    def get(self):
+        with open('How_to_converse.html','r') as fp:
+            self.response.write(fp.read())
+            fp.close()
             
 class GetData (webapp2.RequestHandler):
     def get(self):
@@ -62,6 +67,7 @@ application = webapp2.WSGIApplication([
     ('/howdy', Howdy),
     ('/MasterSharath', MasterSharath),
     ('/calligraphyAnswer', Calligraphy),
+    ('/How_to_converse', Converse),
     ('/getdata', GetData),
     ('/getpic', GetProfilePic),
     ('/getfullurl', GetFullURL),
