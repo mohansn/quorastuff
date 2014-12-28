@@ -28,6 +28,16 @@ def get_quora_cookies_doesnt_work ():
         cookies[c.name] = c.value
     return cookies
 
+def get_profile_path (user):
+    """ Ensure that we have a valid profile url """
+    profile_path = ''
+    if ('quora.com/' in user):
+        profile_path = user
+    else:
+        profile_path = qurls + user
+
+    return profile_path
+
 def get_topics_path (user):
     topics_path = ''
     if ('quora.com/' in user):
@@ -88,8 +98,7 @@ def get_topic_data_json (user):
     return json.dumps (json_data)
 
 def get_profile_pic_path (user):
-    assert ((qurl in user) or (qurls in user))
-    r = requests.get (user) # "user" is the profile url
+    r = requests.get (get_profile_path(user))
     if (r.status_code != 200):
         r.raise_for_status()
     soup = BeautifulSoup(r.text)
