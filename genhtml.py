@@ -9,7 +9,7 @@ from data import *
 
 """ Return Quora cookies for use with retrieving topic data """
 def get_quora_cookies ():
-    return qcookies
+    return json.loads (open('cookies.json', 'r'))
 
 """ Method to programmatically get cookies - doesn't work at the moment"""
 def get_quora_cookies_doesnt_work ():
