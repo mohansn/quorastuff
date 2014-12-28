@@ -2,6 +2,7 @@
 from bs4 import BeautifulSoup
 import requests
 import sys
+import json
 
 from urllib2 import Request, build_opener, HTTPCookieProcessor, HTTPHandler
 import cookielib
@@ -9,7 +10,9 @@ from data import *
 
 """ Return Quora cookies for use with retrieving topic data """
 def get_quora_cookies ():
-    return json.loads (open('cookies.json', 'r'))
+    return json.load (open('cookies.json', 'r'))
+
+qcookies = get_quora_cookies ()
 
 """ Method to programmatically get cookies - doesn't work at the moment"""
 def get_quora_cookies_doesnt_work ():
