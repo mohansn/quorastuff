@@ -33,6 +33,12 @@ class Calligraphy (webapp2.RequestHandler):
             self.response.write(fp.read())
             fp.close()
 
+class BBW_ICCR (webapp2.RequestHandler):
+    def get(self):
+        with open('is_cosmic_consciousness_real.html','r') as fp:
+            self.response.write(fp.read())
+            fp.close()
+
 class Converse (webapp2.RequestHandler):
     def get(self):
         with open('How_to_converse.html','r') as fp:
@@ -67,6 +73,7 @@ application = webapp2.WSGIApplication([
     ('/howdy', Howdy),
     ('/MasterSharath', MasterSharath),
     ('/calligraphyAnswer', Calligraphy),
+    ('/bbwiccr', BBW_ICCR),
     ('/How_to_converse', Converse),
     ('/getdata', GetData),
     ('/getpic', GetProfilePic),
