@@ -8,6 +8,10 @@
     display:inline-block;
 }
 
+#pp img {
+    border-radius:100px; /* Looks pretty :) */
+}
+
 #chart-save {
   clear: both;
   float: left;
