@@ -1,5 +1,6 @@
-function drawPieChart (piedata) 
+function drawPieChart (data) 
 {
+    console.log (data.name);
     var chart = new d3pie ("chart", {
         size: {
             canvasHeight: 700,
@@ -7,7 +8,7 @@ function drawPieChart (piedata)
         },
         header: {
             title: {
-                text: "Here is your pie!",
+                text: "Hello " + data.name + " here is your pie!",
                 fontSize: 30
             },
             subtitle: {
@@ -31,7 +32,7 @@ function drawPieChart (piedata)
             }
         },
         data: {
-            content: piedata
+            content: data.piedata
         },
         callbacks: {
             onClickSegment: function(a) {

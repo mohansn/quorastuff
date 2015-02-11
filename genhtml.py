@@ -117,6 +117,15 @@ def get_full_url (short_url):
     print "Full URL is %s \n" % full_url
     return full_url
 
+def get_name (user):
+    r = requests.get (get_profile_path (user))
+    if (r.status_code != 200):
+        r.raise_for_status()
+    soup = BeautifulSoup (r.text)
+    name = soup.find (class_="user").text
+    print (name)
+    return name
+
 """ Combine data and fixed templates to create output file """
 def write_output_file (user):
     links,topic_data = get_topic_data(user)

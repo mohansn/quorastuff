@@ -22,6 +22,24 @@ $(document).ready(function () {
             });
         }
 
+        name = "foobar";
+        $.ajax ({
+            url: "/getname",
+            type: 'get',
+            data: {
+                'user': $('#textinput').val(),
+                async:false
+            },
+            success : function (data) {
+                console.log ("Success");
+                name = data;
+            },
+            error: function (data) {
+                console.log ("Eror");
+                name = "there!";
+            }
+        });
+
         $.ajax({
             url:"/getdata",
             type: 'get',
@@ -30,7 +48,6 @@ $(document).ready(function () {
                 async:false
             },
             success: function (data) {
-
                 $.ajax ({
                     url: "/getpic",
                     type: 'get',
@@ -44,8 +61,14 @@ $(document).ready(function () {
                         $('#pp').html ("<img src=\"http://placekitten.com/g/200/200\">");
                     }
                 });
+
+                piedata = JSON.parse (data);
+                alldata = {};
+                alldata.piedata = piedata;
+                alldata.name = name;
+                console.log ("alldata.name = " + alldata.name);
                 // Send to D3 for plot
-                drawPieChart (JSON.parse(data));
+                drawPieChart (alldata);
                 $('body').scrollTo($('#chart'),{duration:1000});
                 $('#chart').append( "<button class='btn btn-primary' data-toggle='modal' data-target='#myModal' id='chart-save'>Get Chart Image</button>");
             },
