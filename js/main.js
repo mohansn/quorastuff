@@ -59,6 +59,7 @@ $(document).ready(function () {
     });
 
     $('#chart').on('click', '#chart-save', function(){
+        $('svg text').filter (function () { return this.id.match (/_title|_subtitle/);}).remove();
       svgAsDataUri($('#chart svg')[0], null, function(uri) {
         $('#chart-image').html('<img width=250 src="' + uri + '" />');
         $('#chart-image').append("<button class='btn btn-primary' id='image-save'>Save Image</button> <button class='btn btn-danger' data-dismiss='modal'>Cancel</button>");
