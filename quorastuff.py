@@ -67,6 +67,12 @@ class PieCharts (webapp2.RequestHandler):
         with open ('getpie.html', 'r') as fp:
             self.response.write (fp.read())
             fp.close()
+
+class QuoransOfTheDay (webapp2.RequestHandler):
+    def get (self):
+        with open ('qotd.html') as fp:
+            self.response.write (fp.read())
+            fp.close()
             
 application = webapp2.WSGIApplication([
     ('/', MainPage),
@@ -78,5 +84,6 @@ application = webapp2.WSGIApplication([
     ('/getdata', GetData),
     ('/getpic', GetProfilePic),
     ('/getfullurl', GetFullURL),
-    ('/GetSomePie', PieCharts)
+    ('/GetSomePie', PieCharts),
+    ('/qotdlist', QuoransOfTheDay)
 ], debug=True)
