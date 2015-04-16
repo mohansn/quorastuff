@@ -6,7 +6,9 @@ import json
 
 from urllib2 import Request, build_opener, HTTPCookieProcessor, HTTPHandler
 import cookielib
-from data import *
+
+qurl = 'http://www.quora.com/'
+qurls = 'https://www.quora.com/'
 
 """ Return Quora cookies for use with retrieving topic data """
 def get_quora_cookies ():
@@ -116,34 +118,4 @@ def get_full_url (short_url):
     full_url = r.url.split('?')[0]
     print "Full URL is %s \n" % full_url
     return full_url
-
-""" Combine data and fixed templates to create output file """
-def write_output_file (user):
-    links,topic_data = get_topic_data(user)
-    fp = open (user+'.html','w')
-    if (fp is not None):
-        result = part1 + '\n' + 10 * ' ' + 'var answer_links = ' + str(links) + ';\n'
-        result = result + 10 * ' ' + 'var data = google.visualization.arrayToDataTable(' + str(topic_data) + ');\n'
-        result = result + part2
-        result = result + user
-        result = result + part4
-        fp.write (result)
-        fp.close ()
-    else:
-        print "Unable to create output file"
-
-def get_html (user):
-    links,topic_data = get_topic_data(user)
-    result = part1 + '\n' + 10 * ' ' + 'var answer_links = ' + str(links) + ';\n'
-    result = result + 10 * ' ' + 'var data = google.visualization.arrayToDataTable(' + str(topic_data) + ');\n'
-    result = result + part2
-    result = result + user
-    result = result + part4
-    return result
-
-def write_all_output_files ():
-    users = [l.rstrip('\n') for l in open('users.txt', 'r').readlines()]
-    for user in users:
-        print user
-        write_output_file (user)
 

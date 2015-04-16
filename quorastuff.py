@@ -2,7 +2,6 @@ from google.appengine.api import users
 import webapp2
 import cgi
 from genhtml import get_topic_data_json, get_profile_pic_path
-from data import qurl
 
 class MainPage(webapp2.RequestHandler):
     def get(self):
