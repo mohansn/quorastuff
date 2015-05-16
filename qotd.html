@@ -4,9 +4,6 @@
     <meta name=viewport content="width=device-width, initial-scale=1">
     <title>Quorans Of The Day</title>
     <link rel="shortcut icon" type="image/x-icon" href="static/images/favicon.ico">
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="css/calligraphy.css" rel="stylesheet" type="text/css">
-    <link href="css/fonts.css" rel="stylesheet" type="text/css">
     <style>
       * {
           font-size: large;
@@ -897,5 +894,19 @@
 </tr>
 </table>
 </div>
+<script>
+    var cb = function () {
+        var files = ['css/bootstrap.min.css', 'css/calligraphy.css', 'css/fonts.css'];
+        for (var i = 0; i < files.length; i++) {
+            var l = document.createElement('link'); l.rel = 'stylesheet';
+            l.href = files [i];
+            var h = document.getElementsByTagName('head')[0]; h.parentNode.insertBefore(l, h);
+        }
+    };
+    var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+                                      webkitRequestAnimationFrame || msRequestAnimationFrame;
+    if (raf) raf(cb);
+        else window.addEventListener('load', cb);
+</script>
 </body>
 </html>
