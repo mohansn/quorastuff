@@ -1,0 +1,33 @@
+/*
+  font-face declarations for sans-serif and non-calligraphic fonts
+*/
+@font-face {
+	font-family: 'unna';
+	src:url('fonts/unna/Unna-Regular.otf');
+}
+@font-face {
+	font-family: 'unna';
+	src:url('fonts/unna/Unna-Italic.otf');
+        font-style:italic;
+}
+@font-face {
+	font-family: 'unna';
+	src:url('fonts/unna/Unna-Bold.otf');
+        font-weight:bold;
+}
+@font-face {
+	font-family: 'unna';
+	src:url('fonts/unna/Unna-BoldItalic.otf');
+        font-weight:bold;
+        font-style:italic;
+}
+@font-face {
+	font-family: 'rosarivo';
+	src:url('fonts/rosarivo/Rosarivo-Regular.otf');
+}
+@font-face {
+	font-family: 'rosarivo';
+	src:url('fonts/rosarivo/Rosarivo-Italic.otf');
+        font-style:italic;
+}
+

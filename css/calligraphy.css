@@ -328,3 +328,7 @@
 	font-family: 'Learning Curve';
 	src:url('fonts/LearningCurve_OT.otf');
 }
+@font-face {
+	font-family: 'sofia';
+	src:url('fonts/Sofia-Regular.otf');
+}
