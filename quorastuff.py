@@ -1,7 +1,7 @@
 from google.appengine.api import users
 import webapp2
 import cgi
-from genhtml import get_topic_data_json, get_profile_pic_path
+from genhtml import get_topic_data_json, get_profile_pic_path, get_follower_count
 
 class MainPage(webapp2.RequestHandler):
     def get(self):
@@ -72,6 +72,10 @@ class QuoransOfTheDay (webapp2.RequestHandler):
         with open ('qotd.html') as fp:
             self.response.write (fp.read())
             fp.close()
+
+class GetFollowerCount (webapp2.RequestHandler):
+    def get (self):
+        self_response_write (get_follower_count ())
             
 application = webapp2.WSGIApplication([
     ('/', MainPage),
@@ -84,5 +88,6 @@ application = webapp2.WSGIApplication([
     ('/getpic', GetProfilePic),
     ('/getfullurl', GetFullURL),
     ('/GetSomePie', PieCharts),
-    ('/qotdlist', QuoransOfTheDay)
+    ('/qotdlist', QuoransOfTheDay),
+    ('/getfollowercount', GetFollowerCount)
 ], debug=True)

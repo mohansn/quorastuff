@@ -119,3 +119,12 @@ def get_full_url (short_url):
     print "Full URL is %s \n" % full_url
     return full_url
 
+def get_follower_count (user):
+    r = requests.get (get_profile_path(user), cookies=qcookies)
+    if (r.status_code != 200):
+        r.raise_for_status()
+    soup = BeautifulSoup(r.text)
+    # find the span containing the follower count on the profile page
+    # Remove the commas
+    fc = int(soup.select ('li.FollowersNavItem > a > span')[0].text.replace (",",""))
+    return fc
