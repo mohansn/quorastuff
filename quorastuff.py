@@ -43,6 +43,12 @@ class Converse (webapp2.RequestHandler):
         with open('How_to_converse.html','r') as fp:
             self.response.write(fp.read())
             fp.close()
+
+class VVBubbles (webapp2.RequestHandler):
+    def get (self):
+        with open ('bubbles.html') as fp:
+            self.response.write (fp.read())
+            fp.close()
             
 class GetData (webapp2.RequestHandler):
     def get(self):
@@ -80,6 +86,7 @@ application = webapp2.WSGIApplication([
     ('/calligraphyAnswer', Calligraphy),
     ('/bbwiccr', BBW_ICCR),
     ('/How_to_converse', Converse),
+    ('/vvbubbles', VVBubbles),
     ('/getdata', GetData),
     ('/getpic', GetProfilePic),
     ('/getfullurl', GetFullURL),
