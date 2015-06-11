@@ -2,7 +2,8 @@ function drawBubbles (data)
 {
     //Width and height
     var w = window.innerWidth;
-    var h = window.innerHeight;
+    //FIXME: Can't I do this by simple DOM traversal?? Yuck!
+    var h = window.innerHeight - $('h1').height();
 
     //Original data
     var dataset = {
@@ -56,12 +57,16 @@ function drawBubbles (data)
 	    return colors(i);
         })
         .call(force.drag);
-    
+
+    nodes.on ("dragend", function () {
+        d3.event.sourceEvent.stopPropagation();
+    });
+
     nodes.on ("click",
               function (d) {
+                  if (d3.event.defaultPrevented)
+                      return;
                   window.open (d.link);
-                  d3.event.preventDefault();
-                  d3.event.stopPropagation();
               });
 
     var text = svg.selectAll ("text")
@@ -70,11 +75,12 @@ function drawBubbles (data)
         .append ("text");
 
     var textLabels = text
-                         .attr ("x", function (d) { return d.x - 15; })
+                         .attr ("x", function (d) { return d.x - 25; })
                          .attr ("y", function (d) { return d.y; })
                          .text (function (d) {return d.label;})
                          .attr ('font-family', "sans-serif")
                          .attr ("font-size", "14px")
+                         .attr ("font-weight", "bold")
                          .attr ("fill","black");
 
     //Every time the simulation "ticks", this will be called
@@ -97,11 +103,12 @@ function drawBubbles (data)
         nodes.attr("cx", function(d) { return d.x; })
 	    .attr("cy", function(d) { return d.y; });
         textLabels = text
-                         .attr ("x", function (d) { return d.x - 15; })
+                         .attr ("x", function (d) { return d.x - 25; })
                          .attr ("y", function (d) { return d.y; })
                          .text (function (d) {return d.label;})
                          .attr ('font-family', "sans-serif")
                          .attr ("font-size", "14px")
+                         .attr ("font-weight", "bold")
                          .attr ("fill","black");
     });
 
