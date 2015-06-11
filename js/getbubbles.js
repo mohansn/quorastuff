@@ -1,9 +1,6 @@
 $(document).ready(function () {
-    console.log ("in document ready");
-    $('#bubbles').empty();
-    $('body').append("<div id=\"bubbles\"></div>");
     $( "form" ).submit(function( event ) {
-        console.log ("in form submit");
+        $('#bubbles').empty();
         var user_url = $("#textinput").val();
         if (user_url.match (/qr.ae/)) {
             console.log ("Got a short URL");
@@ -31,8 +28,8 @@ $(document).ready(function () {
             },
             success: function (data) {
                 // Send to D3 for plot
-                console.log ("sending to drawbubbles");
                 drawBubbles (JSON.parse(data));
+                $('#bubbles').prepend('<h1> Drag the bubbles around for fun,\n\t click on them to see answers in that topic</h1>');
                 $('body').scrollTo($('#bubbles'),{duration:1000});
             },
             error: function (data) {
