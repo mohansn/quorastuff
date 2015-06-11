@@ -49,7 +49,13 @@ class VVBubbles (webapp2.RequestHandler):
         with open ('bubbles.html') as fp:
             self.response.write (fp.read())
             fp.close()
-            
+
+class GetBubbles (webapp2.RequestHandler):
+    def get (self):
+        with open ('getbubbles.html') as fp:
+            self.response.write (fp.read())
+            fp.close()
+
 class GetData (webapp2.RequestHandler):
     def get(self):
         pname = cgi.escape(self.request.get ('user'))
@@ -87,6 +93,7 @@ application = webapp2.WSGIApplication([
     ('/bbwiccr', BBW_ICCR),
     ('/How_to_converse', Converse),
     ('/vvbubbles', VVBubbles),
+    ('/getbubbles', GetBubbles),
     ('/getdata', GetData),
     ('/getpic', GetProfilePic),
     ('/getfullurl', GetFullURL),
