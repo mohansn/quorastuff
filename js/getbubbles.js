@@ -31,6 +31,12 @@ $(document).ready(function () {
                 drawBubbles (JSON.parse(data));
                 $('#bubbles').prepend('<h1> Drag the bubbles around for fun,\n\t click on them to see answers in that topic</h1>');
                 $('body').scrollTo($('#bubbles'),{duration:1000});
+                $('#bubbles > svg > circle').on ("mouseover", function () {
+                    $(this).css ("opacity", 0.8);
+                });
+                $('#bubbles > svg > circle').on ("mouseout", function () {
+                    $(this).css ("opacity", 1);
+                });
             },
             error: function (data) {
                 // TODO: Failback using local HTML files
