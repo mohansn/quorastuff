@@ -33,12 +33,21 @@
 }
 */
 @font-face {
+	font-family: 'Bearpaw';
+	src:url('fonts/BEARPAW_.ttf');
+}
+
+@font-face {
 	font-family: 'cac_champagne';
 	src:url('fonts/cac_champagne.ttf');
 }
 @font-face {
 	font-family: 'Calligraffiti';
 	src:url('fonts/Calligraffiti.ttf');
+}
+@font-face {
+	font-family: 'Carousel';
+	src:url('fonts/Carousel.ttf');
 }
 @font-face {
 	font-family: 'Carrington';
