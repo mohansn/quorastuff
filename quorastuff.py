@@ -1,7 +1,14 @@
 from google.appengine.api import users
+from google.appengine.ext import ndb
 import webapp2
 import cgi
+import logging
 from genhtml import get_topic_data_json, get_profile_pic_path
+
+class Poll (ndb.Model):
+    name = ndb.StringProperty()
+    age = ndb.StringProperty()
+    beverages = ndb.StringProperty()
 
 class MainPage(webapp2.RequestHandler):
     def get(self):
@@ -97,7 +104,31 @@ class HBDDMK (webapp2.RequestHandler):
             self.response.write (fp.read())
             fp.close()
 
-
+class Webapp2 (webapp2.RequestHandler):
+    def post (self):
+        name = cgi.escape (self.request.get ('name'))
+        age = cgi.escape (self.request.get ('age'))
+        bev = cgi.escape (self.request.get ('beverage'))
+        logging.info ("hi\n")
+        logging.info ("Name: " + str(name) + "\n")
+        logging.info ("Age: " + str(age) + "\n")
+        if (name is None or age is None):
+            logging.warning ("POST: No data received")
+        else:
+            pollentry = Poll (parent=ndb.Key('Poll','parent'), name=str(name), age=str(age), beverages = str(bev))
+            pollentry.put()
+        
+    def get (self):
+        logging.info ("Hi (GET)\n")
+        pollentries = Poll.query(ancestor=ndb.Key('Poll', 'parent')).fetch()
+        if (len(pollentries) is 0):
+            logging.warning ("No entries found!")
+        for pollentry in pollentries:
+            logging.info (str(pollentry.name))
+            logging.info (str(pollentry.age))
+            self.response.write ("Name: " + pollentry.name + "\n Age: " + pollentry.age + "\n Beverages: " + pollentry.beverages + "\n")
+        
+        
 application = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/howdy', Howdy),
@@ -113,5 +144,6 @@ application = webapp2.WSGIApplication([
     ('/GetSomePie', PieCharts),
     ('/qotdlist', QuoransOfTheDay),
     ('/hbdsh', HBDSH),
-    ('/hbddmk', HBDDMK)
+    ('/hbddmk', HBDDMK),
+    ('/beverages', Webapp2)
 ], debug=True)
