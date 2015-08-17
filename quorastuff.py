@@ -59,8 +59,6 @@ class GetBubbles (webapp2.RequestHandler):
 class GetData (webapp2.RequestHandler):
     def get(self):
         pname = cgi.escape(self.request.get ('user'))
-        print ('GetData: Got user = ');
-        print (pname)
         return self.response.write (get_topic_data_json (pname))
 
 class GetProfilePic (webapp2.RequestHandler):
