@@ -95,6 +95,12 @@ class HBDDMK (webapp2.RequestHandler):
             self.response.write (fp.read())
             fp.close()
 
+class HBDKGN (webapp2.RequestHandler):
+    def get (self):
+        with open ('hbdkgn.html') as fp:
+            self.response.write (fp.read())
+            fp.close()
+
 
 application = webapp2.WSGIApplication([
     ('/', MainPage),
@@ -111,5 +117,6 @@ application = webapp2.WSGIApplication([
     ('/GetSomePie', PieCharts),
     ('/qotdlist', QuoransOfTheDay),
     ('/hbdsh', HBDSH),
-    ('/hbddmk', HBDDMK)
+    ('/hbddmk', HBDDMK),
+    ('/hbdkgn', HBDKGN)
 ], debug=True)
