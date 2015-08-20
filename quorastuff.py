@@ -104,6 +104,12 @@ class HBDDMK (webapp2.RequestHandler):
             self.response.write (fp.read())
             fp.close()
 
+class HBDKGN (webapp2.RequestHandler):
+    def get (self):
+        with open ('hbdkgn.html') as fp:
+            self.response.write (fp.read())
+            fp.close()
+
 class Webapp2 (webapp2.RequestHandler):
     def post (self):
         name = cgi.escape (self.request.get ('name'))
@@ -203,6 +209,7 @@ application = webapp2.WSGIApplication([
         ('/qotdlist', QuoransOfTheDay),
         ('/hbdsh', HBDSH),
         ('/hbddmk', HBDDMK),
+        ('/hbdkgn', HBDKGN),
         ('/beverages', Webapp2),
         ('/ysrt', YSRT)
         ], debug=True)
