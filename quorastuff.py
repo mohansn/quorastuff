@@ -92,6 +92,12 @@ class QuoransOfTheDay (webapp2.RequestHandler):
             self.response.write (fp.read())
             fp.close()
 
+class HBDAA (webapp2.RequestHandler):
+    def get (self):
+        with open ('hbdaa.html') as fp:
+            self.response.write (fp.read())
+            fp.close()
+
 class HBDSH (webapp2.RequestHandler):
     def get (self):
         with open ('hbdsh.html') as fp:
@@ -194,22 +200,23 @@ class YSRT (webapp2.RequestHandler):
         pass
         
 application = webapp2.WSGIApplication([
-        ('/', MainPage),
-        ('/howdy', Howdy),
-        ('/MasterSharath', MasterSharath),
-        ('/calligraphyAnswer', Calligraphy),
-        ('/bbwiccr', BBW_ICCR),
-        ('/How_to_converse', Converse),
-        ('/vvbubbles', VVBubbles),
-        ('/getbubbles', GetBubbles),
-        ('/getdata', GetData),
-        ('/getpic', GetProfilePic),
-        ('/getfullurl', GetFullURL),
-        ('/GetSomePie', PieCharts),
-        ('/qotdlist', QuoransOfTheDay),
-        ('/hbdsh', HBDSH),
-        ('/hbddmk', HBDDMK),
-        ('/hbdkgn', HBDKGN),
-        ('/beverages', Webapp2),
-        ('/ysrt', YSRT)
-        ], debug=True)
+    ('/', MainPage),
+    ('/howdy', Howdy),
+    ('/MasterSharath', MasterSharath),
+    ('/calligraphyAnswer', Calligraphy),
+    ('/bbwiccr', BBW_ICCR),
+    ('/How_to_converse', Converse),
+    ('/vvbubbles', VVBubbles),
+    ('/getbubbles', GetBubbles),
+    ('/getdata', GetData),
+    ('/getpic', GetProfilePic),
+    ('/getfullurl', GetFullURL),
+    ('/GetSomePie', PieCharts),
+    ('/qotdlist', QuoransOfTheDay),
+    ('/hbdaa', HBDAA),
+    ('/hbdsh', HBDSH),
+    ('/hbddmk', HBDDMK),
+    ('/hbdkgn', HBDKGN),
+    ('/ysrt', YSRT)
+], debug=True)
+
