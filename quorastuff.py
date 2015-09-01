@@ -122,7 +122,6 @@ class HBDKGN (webapp2.RequestHandler):
             self.response.write (fp.read())
             fp.close()
 
-<<<<<<< HEAD
 class Webapp2 (webapp2.RequestHandler):
     def post (self):
         name = cgi.escape (self.request.get ('name'))
@@ -204,10 +203,10 @@ class YSRT (webapp2.RequestHandler):
             
         
     def get (self):
-        pass
+        with open ('ysrt.html', 'r') as fp:
+            self.response.write (fp.read())
+            fp.close()
         
-=======
->>>>>>> master
 application = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/howdy', Howdy),
@@ -222,7 +221,7 @@ application = webapp2.WSGIApplication([
     ('/getfullurl', GetFullURL),
     ('/GetSomePie', PieCharts),
     ('/qotdlist', QuoransOfTheDay),
-    ('/hbdcc'. HBDCC),
+    ('/hbdcc', HBDCC),
     ('/hbdaa', HBDAA),
     ('/hbdsh', HBDSH),
     ('/hbddmk', HBDDMK),
