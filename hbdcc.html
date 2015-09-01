@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title> Happy Birthday, Clare! </title>
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/4/4b/Farm-Fresh_cake.png">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <script src="js/jquery.lettering.js"></script>
+    <script src="js/hbd.js"></script>
+    <link rel="stylesheet" href="css/calligraphy.css" type="text/css" charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="css/hover-min.css">
+    <style>
+      div {
+        font-family:'Montez-Regular';
+        font-size:70pt;
+        text-transform:uppercase;
+        letter-spacing:0.05em;
+        margin:75px;
+        text-align:center;
+        color:Chocolate;
+      }
+      #d1, #d2, #d3 {
+          margin:20px;
+      }
+      #d3 {
+          text-transform:none;
+      }
+      body {
+        background-color:GreenYellow;
+      }
+    </style>
+  </head>
+  <script>
+    $(document).ready(function () {
+            $('#d1').show('slow');
+            $('#d2').show('slow');
+            $('#d3').show('slow');        
+        $('body').click(function () {
+            $('#d3').hide('slow');
+            $('#d2').hide('slow');
+            $('#d1').hide('slow');
+            $('#cake').css ('background-color','whitesmoke');    
+            $('#cake').show (2000);
+            $('body').css ('background-color','whitesmoke');
+        });
+    });
+  </script>
+  <body>
+    <div id="d1">Happy</div>
+    <div id="d2">Birthday</div>
+    <div id="d3">Clare!</div>
+    <div id="cake" style="display:none">
+      <img src="http://www.groverbakers.com/admin/images/fullscreen/72.jpg" width="90%" height="100%">
+    </div>
+  </body>
+</html>

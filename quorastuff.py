@@ -92,6 +92,12 @@ class QuoransOfTheDay (webapp2.RequestHandler):
             self.response.write (fp.read())
             fp.close()
 
+class HBDCC (webapp2.RequestHandler):
+    def get (self):
+        with open ('hbdcc.html') as fp:
+            self.response.write (fp.read())
+            fp.close()
+
 class HBDAA (webapp2.RequestHandler):
     def get (self):
         with open ('hbdaa.html') as fp:
@@ -213,6 +219,7 @@ application = webapp2.WSGIApplication([
     ('/getfullurl', GetFullURL),
     ('/GetSomePie', PieCharts),
     ('/qotdlist', QuoransOfTheDay),
+    ('/hbdcc'. HBDCC),
     ('/hbdaa', HBDAA),
     ('/hbdsh', HBDSH),
     ('/hbddmk', HBDDMK),
