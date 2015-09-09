@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title> Happy Birthday, Deeksha! </title>
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/4/4b/Farm-Fresh_cake.png">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <script src="js/jquery.lettering.js"></script>
+    <!--script src="js/hbd.js"></script-->
+    <link rel="stylesheet" href="css/calligraphy.css" type="text/css" charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="css/hover-min.css">
+    <style>
+      div {
+        font-family:'Cinzel';       
+        font-size:35pt;
+        letter-spacing:0.05em;
+        margin:auto;
+        text-align:center;
+        text-transform:uppercase;
+//        color:#4C3F54;
+        color:white;
+      }
+      #d15 {
+          font-family:'Montez-Regular';
+          text-transform:none;
+      }
+      #d1, #d2, #d3 {
+          margin:20px;
+      }
+      #d3 {
+          text-transform:none;
+      }
+      body {
+//        background-color:#F2C057;
+          background-color:#FFF;
+//        background-image:url("https://upload.wikimedia.org/wikipedia/commons/6/6a/Symian_virus.png");
+//        background-size:cover;
+      }
+      img.bg {
+          display:inline;
+//          height:100vh;
+          width:100vw;
+          position:absolute;
+          top:0;
+          left:0;
+      }
+      #cake {
+          display:none;
+      }
+      #cake img {
+          width:90vw;
+          height:100vh;
+      }
+
+    </style>
+  </head>
+  <script>
+    $(document).ready(function () {
+        // js/hbd.js + #d15
+        $('#d1').lettering();
+        $('#d15').lettering();
+        $('#d2').lettering();
+        $('#d3').lettering();
+        $('span[class^="char"]').addClass ('hvr-pop');
+        $('div').hide();
+        $('.container').show();
+        $('#d1').show ('blind',{direction:'left'},500);
+        $('#d2').show ('blind',{direction:'right'},1000);
+        $('#d3').show ('blind',{direction:'left'},1500);   
+        $('#d15').show (2000);
+        $('body').click(function () {
+            $('img.bg').hide();
+            $('.container').hide ('slow');
+    
+            $('#cake').css ('background-color','whitesmoke');    
+            $('#cake').show (2000);
+            $('body').css ('background-color','whitesmoke');    
+        });
+    });
+  </script>
+  <body>
+    <img class="bg" src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Symian_virus.png"/>
+    <div class="container">
+      <div id="d1">Happy</div>
+      <div id="d15">belated</div>
+      <div id="d2">Birthday</div>
+      <div id="d3">Deeksha!</div>
+    </div>
+    <div id="cake">
+      <img src="http://www.groverbakers.com/admin/images/fullscreen/72.jpg"/>
+    </div>
+  </body>
+</html>
