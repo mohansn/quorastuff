@@ -2,9 +2,11 @@
 from bs4 import BeautifulSoup
 import requests
 import sys
+#import os
 import json
 
 from urllib2 import Request, build_opener, HTTPCookieProcessor, HTTPHandler
+#from collections import Counter
 import cookielib
 
 qurl = 'http://www.quora.com/'
@@ -119,3 +121,26 @@ def get_full_url (short_url):
     print "Full URL is %s \n" % full_url
     return full_url
 
+def get_answer_topics (url):
+    r = requests.get (url)
+    if (r.status_code != 200):
+        r.raise_for_status()
+    soup = BeautifulSoup (r.content)
+    topics = set ()
+    for link in soup.findAll ('span',class_="TopicName"):
+        topics.add (link.text)
+
+    return topics
+"""
+# XXX: not sufficiently general
+# To be written as per need in the future
+
+def get_all_answer_topics (infile):    
+    topichash = Counter ()
+    answers = []
+    with open (infile) as fp:
+        answers = [l.strip (os.linesep) for l in fp.readlines()]
+    for answer in answers:
+        topichash.update (get_answer_topics (answer))
+    return topichash
+"""
