@@ -12,6 +12,7 @@
         margin-left: 100px;
         margin-top: 80px;
         margin-right: 50px;
+        font-family:'Raleway';
       }
       li {
         font-size: 20px;
@@ -19,26 +20,49 @@
       }
       #container {
         margin-bottom:20px;
+        display:flex;
+        flex-direction:row;
       }
       #container h1 {
-        display:inline-block;
         margin:10px;
+        font-family:'Raleway';
       }
-      #container img {
-        display:inline-block;
+      #container img{
         float:left;
-        width:100px;
-        height:100px;
-        border-radius:50px;
+        width:200px;
+        height:200px;
+        border-radius:25px;
+      }
+      #kitteh {
+          margin-right:5%;
+      }
+      #text {
+          width: 70%;
+          display: flex;
+          flex-direction: column;
+          justify-content:space-between;
+      }
+      #qod-quote > p {
+          font-size:0.9em;
       }
     </style>
   </head>
   <body>
     <div class="container" id="container">
-      <h1>
-        Welcome to my Quora stuff!
-      </h1>
-      <a href="https://www.quora.com/Mohan-S-Nayaka"><img src="https://spl.smugmug.com/Humor/Lambdacats/i-4zrsdBk/3/D/explodid-D.jpg"/></a>
+      <div id="kitteh">
+        <a href="https://www.quora.com/Mohan-S-Nayaka"><img src="explodid.jpg"/></a>
+      </div>
+      <div id="text">
+        <h1>
+          Welcome to my Quora stuff!
+        </h1>
+        <div></div>
+        <blockquote id="qod-quote">
+          <img src="ripple.svg"/>
+        </blockquote>
+        <script src="http://quotesondesign.com/api/3.0/api-3.0.js"
+                type="text/javascript" charset="utf-8"></script>
+      </div>
     </div>
     <div class="stuff">
       <ul>
@@ -46,7 +70,7 @@
           <a href="/qotdlist"> Quorans of the Day! </a> An archived list of awesome Quorans we've featured on <a href="http://quoranoftheday.quora.com">Quoran Of The Day!</a>
         </li>
         <li>
-          <a href="http://quora-pie-chart.herokuapp.com/"> Pie AND bar charts for Quora users </a> - <a href="http://giordonstark.com/">Giordon Stark's</a> awesome app 
+          <a href="http://quora-pie-chart.herokuapp.com/"> Pie AND bar charts for Quora users </a> - <a href="http://giordonstark.com/">Giordon Stark's</a> awesome app
         </li>
         <li>
           <a href="/GetSomePie">Pie Charts for all Quora users</a> - Supply a user's profile URL to get a topic-wise breakdown of their answers.
