@@ -110,6 +110,12 @@ class HBDCC (webapp2.RequestHandler):
             self.response.write (fp.read())
             fp.close()
 
+class HBDNS (webapp2.RequestHandler):
+    def get (self):
+        with open ('hbdns.html') as fp:
+            self.response.write (fp.read())
+            fp.close()
+
 class HBDAA (webapp2.RequestHandler):
     def get (self):
         with open ('hbdaa.html') as fp:
@@ -234,6 +240,7 @@ application = webapp2.WSGIApplication([
     ('/GetSomePie', PieCharts),
     ('/qotdlist', QuoransOfTheDay),
     ('/qotwlist', QuoransOfTheWeek),
+    ('/hbdns', HBDNS),
     ('/hbddt', HBDDT),
     ('/hbdcc', HBDCC),
     ('/hbdaa', HBDAA),
