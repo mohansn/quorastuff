@@ -2,11 +2,11 @@
 from bs4 import BeautifulSoup
 import requests
 import sys
-#import os
+import os
 import json
 
 from urllib2 import Request, build_opener, HTTPCookieProcessor, HTTPHandler
-#from collections import Counter
+from collections import Counter
 import cookielib
 
 qurl = 'http://www.quora.com/'
@@ -131,7 +131,7 @@ def get_answer_topics (url):
         topics.add (link.text)
 
     return topics
-"""
+
 # XXX: not sufficiently general
 # To be written as per need in the future
 
@@ -143,4 +143,3 @@ def get_all_answer_topics (infile):
     for answer in answers:
         topichash.update (get_answer_topics (answer))
     return topichash
-"""
