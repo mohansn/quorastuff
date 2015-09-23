@@ -8,15 +8,19 @@ handlers:
 - url: /favicon\.ico
   static_files: static/images/favicon.ico
   upload: static/images/favicon\.ico
+  expiration: "60d"
 - url: /(.*.(jpg|svg|gif|png))
   static_files: static/images/\1
   upload: static/images/(.*.(jpg|svg|gif|png))
 - url: /*.otf
   static_dir: fonts
+  expiration: "60d"
 - url: /*.ttf
   static_dir: fonts
+  expiration: "60d"
 - url: /*.css
   static_dir: css
+  expiration: "60d"
 - url: /*.js
   static_dir: js
 - url: /.*
