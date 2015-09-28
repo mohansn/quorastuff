@@ -107,13 +107,14 @@ var EvaluateItemView = Parse.View.extend ({
     tagName:'tr', // A table row
     model: Answer,
     initialize: function () {
-        this.template=_.template ($('#rate-item-template').html());
+        this.template = _.template ($('#rate-item-template').html());
         _.bindAll (this, "render");
     },
     events : {
         'click .submit': 'saveScore'
     },
     render : function () {
+        var currUser = Parse.User.current();
         data = this.model.toJSON();
         data.answer = makeURL(data.answer.replace(/\"/g, ""));
         if (data.ratings == undefined) {
@@ -123,19 +124,38 @@ var EvaluateItemView = Parse.View.extend ({
         this.isNew = this.$('input.older');
 
         $(this.el).html(this.template (data));
+        $('a').attr ("target","_blank"); // open link in a new tab/window
+        if (currUser) {
+            if (data.ratings != undefined){
+                if (data.isNew) {
+                    this.$('input.rating').val(round(data.ratings[currUser.getUsername()]/1.05, -1));
+                } else {
+                    this.$('input.rating').val(round(data.ratings[currUser.getUsername()], -1));
+                }
+            }
+        }
+        if (data.isNew != undefined) {
+            this.$('input.older')[0].checked = data.isNew;
+        }
         return this;
     },
     saveScore : function () {
+        if ((this.$('input.rating').val()).trim() == "") {
+            alert ("Please enter a rating (0-10)");
+            this.$('input.rating').focus();
+            return;
+        }
         var rating = parseFloat(this.$('input.rating').val());
         var currentName = Parse.User.current().getUsername().toString();
-        if (this.$('input.older')[0].checked) {
+        var isNew = this.$('input.older')[0].checked;
+        if (isNew) {
             rating = rating * 1.05;
         }
         var ratings = this.model.get ('ratings');
         ratings = (ratings == undefined)? {} : ratings;
         ratings[currentName] = rating;
         var avgRating = average (_.values(ratings));
-        this.model.save({"ratings":ratings, "rating":avgRating},
+        this.model.save({"ratings":ratings, "rating":avgRating, "isNew":isNew},
                         {
                             success: function () {
                                 alert ("Data saved successfully!");
@@ -167,7 +187,9 @@ var ReportItemView = Parse.View.extend ({
         data.answer = makeURL(data.answer.replace(/\"/g, ""));
         data.submitter = makeUserURL(data.submitter.replace(/\"/g, ""));
         data.comments = data.comments.replace(/\"/g, "");
+        data.rating = (typeof (data.rating) == "number") ? round(data.rating, -2) : "Not rated";
         $(this.el).html(this.template (data));
+        $('a').attr ("target","_blank");
         return this;
     }
 });
@@ -207,17 +229,17 @@ var ChoiceView = Parse.View.extend ({
 });
 
 var EvaluateView = Parse.View.extend ({
-    el:'table#table-rate-answers tbody',/*
-    events : {
-        "click button#logout": "logout",
-        "click button#nav": "switchView"
-    },*/
+    el:'table#table-rate-answers tbody',
     initialize: function () {
         $('#rate-answers-header').show();
         var self = this;
         $('body').css ('padding-top','70px');
         $('nav#switch button#nav').text ("Return to viewing");
         $('nav#switch').show();
+        $(this.el).empty();
+        $('#choices').hide ();
+        $('#rate-answers-header').show();
+
 
         _.bindAll (this, 'addAnswer');
         this.answers = new Answers;
@@ -226,23 +248,7 @@ var EvaluateView = Parse.View.extend ({
         this.answers.query.descending ("createdAt");
         this.answers.bind ('add', this.addAnswer);
         this.answers.fetch ({add:true});
-        $(this.el).empty();
-        $('#choices').hide ();
-        $('#rate-answers-header').show();
-    },/*
-    switchView: function () {
-        $('#rate-answers-header').hide();
-        new ReportView;
-        this.undelegateEvents();
-        delete this;
     },
-    logout: function () {
-        Parse.User.logOut();
-        $('#rate-answers-header').hide();
-        new AppView;
-        this.undelegateEvents();
-        delete this;
-    },*/
 
     addAnswer : function (answer) {
         var view = new EvaluateItemView ({model:answer});
@@ -251,11 +257,7 @@ var EvaluateView = Parse.View.extend ({
 });
 
 var ReportView = Parse.View.extend ({
-    el:'table#table-view-answers tbody',/*
-    events : {
-        "click button#logout": "logout",
-        "click button#nav": "switchView"
-    },*/
+    el:'table#table-view-answers tbody',
     initialize : function () {
         $('#rate-answers-header').hide();
         var self = this; // why?
@@ -264,7 +266,7 @@ var ReportView = Parse.View.extend ({
         this.answers = new Answers(); // collection
         this.answers.query = new Parse.Query (Answer);
         this.answers.query.greaterThanOrEqualTo ("createdAt", lastWednesday());
-        this.answers.query.descending ("createdAt");
+        this.answers.query.descending ("rating");
         this.answers.bind ('add', this.addAnswer);
 
         $(this.el).empty();
@@ -274,20 +276,7 @@ var ReportView = Parse.View.extend ({
         $('nav#switch').show();
         $('#view-answers-header').show();
         this.answers.fetch ({add:true});
-    },/*
-    logout : function () {
-        Parse.User.logOut();
-        $('#view-answers-header').hide();
-        new AppView;
-        this.undelegateEvents();
-        delete this;
     },
-    switchView: function () {
-        $('#view-answers-header').hide();
-        new EvaluateView;
-        this.undelegateEvents();
-        delete this;
-    },*/
     addAnswer : function (answer) {
         var view = new ReportItemView ({model:answer});
         $(this.el).append (view.render().el);
@@ -296,35 +285,42 @@ var ReportView = Parse.View.extend ({
 
 $(function () {
     Parse.$ = jQuery;
-        $('button#nav').click (function (e) {
-            if ($('button#nav').text().match(/viewing/)) {
-                $('button#nav').text("Return to rating");
-                $('#rate-answers-header').hide();
-                $('table#table-view-answers tbody').empty();
-                $('table#table-rate-answers tbody').empty();
-                new ReportView;
-            } else {
-                $('button#nav').text("Return to viewing");
-                $('#view-answers-header').hide();
-                $('table#table-view-answers tbody').empty();
-                $('table#table-rate-answers tbody').empty();
-                new EvaluateView;
-            }
-        });
-        $('button#logout').click (function (e) {
-            Parse.User.logOut();
-            window.location.href = "http://quorastuff.appspot.com/ysrt";
-/*
-            $('body').css ('padding-top','0px');
-            $('nav#switch').hide();
+    $('button#nav').click (function (e) {
+        if ($('button#nav').text().match(/viewing/)) {
+            $('button#nav').text("Return to rating");
             $('#rate-answers-header').hide();
+            $('table#table-view-answers tbody').empty();
+            $('table#table-rate-answers tbody').empty();
+            new ReportView;
+        } else {
+            $('button#nav').text("Return to viewing");
             $('#view-answers-header').hide();
             $('table#table-view-answers tbody').empty();
             $('table#table-rate-answers tbody').empty();
-            new AppView;
-*/
-        });
+            new EvaluateView;
+        }
+    });
+    $('button#logout').click (function (e) {
+        Parse.User.logOut();
+        window.location.href = "http://quorastuff.appspot.com/ysrt";
+    });
+        if (window.innerWidth < 768) {
+            $('th.older').html('Less<br>than<br>30 <br>days<br>old?');
+            $('th.submit').html ('Submit<br>rating');
+        } else {
+            $('th.older').html('Is this answer recent?<br> (less than 30 days old)');
+            $('th.submit').html ('Submit rating');
+        }
 
+    $(window).resize (function () {
+        if (window.innerWidth < 768) {
+            $('th.older').html('Less<br>than<br>30 <br>days<br>old?');
+            $('th.submit').html ('Submit<br>rating');
+        } else {
+            $('th.older').html('Is this answer recent?<br> (less than 30 days old)');
+            $('th.submit').html ('Submit rating');
+        }
+    });
     $('div#fblogin button').on('click', FBlogin);    
     new AppView;
 });

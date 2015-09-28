@@ -45,6 +45,7 @@
           border-collapse:collapse;
       }
       td {
+          overflow:hidden;
           word-wrap:break-word;
           padding: 0.5em 0 0.5em 0;
           text-align:center;
@@ -112,6 +113,51 @@
       }
       nav#switch {
           display:none;
+      }
+      @media (max-width:768px) {
+          td,th {
+              overflow:hidden;
+              word-wrap:break-word;
+              padding: 20px 0;
+              text-align:center;
+          }
+
+          table {
+              width:95%;
+          }
+          body {
+              margin:0 10px;
+          }
+          .answer {
+              width:80px;
+              overflow:hidden;
+          }
+          td.rating, th.rating {
+              width:25px;
+          }
+          td.older, th.older, input.older {
+              width:25px;
+          }
+          .submit {
+              width:50px;
+          }
+          .timestamp {
+              display:none;
+              visibility:hidden;
+          }
+          #table-view-answers {
+              th:last-child, td:last-child {
+              }    
+          }
+          #table-view-answers > thead > tr > th:nth-child(5),
+          #table-view-answers > tbody > tr > td:nth-child(5) {
+              display:none;
+              visibility:hidden;              
+          }
+
+          #view-answers-header, #rate-answers-header {
+              padding-top:40px;
+          }
       }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
