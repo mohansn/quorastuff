@@ -3,7 +3,7 @@ from google.appengine.ext import ndb
 import webapp2
 import cgi
 import logging
-from genhtml import get_topic_data_json, get_profile_pic_path
+from genhtml import get_topic_data_json, get_profile_pic_path, get_full_url
 import json
 import requests
 

@@ -137,6 +137,26 @@ var EvaluateItemView = Parse.View.extend ({
         if (data.isNew != undefined) {
             this.$('input.older')[0].checked = data.isNew;
         }
+
+        var DOMref = undefined;
+        // Get full links for answers
+        if (this.$('td.answer a')[0].href.match(/qr.ae/)) {
+            // needed since reference to 'this' is invalid after render exits
+            DOMref = this.$('td.answer a')[0];
+            $.ajax({
+                url:'/getfullurl',
+                type: 'get',
+                data : {
+                    url: DOMref.href
+                },
+                success : function (data) {
+                    DOMref.text = data;
+                },
+                error : function () {
+                }
+            });
+        }
+
         return this;
     },
     saveScore : function () {
@@ -190,6 +210,25 @@ var ReportItemView = Parse.View.extend ({
         data.rating = (typeof (data.rating) == "number") ? round(data.rating, -2) : "Not rated";
         $(this.el).html(this.template (data));
         $('a').attr ("target","_blank");
+        var DOMref = undefined;
+
+        // Get full links for answers
+        if (this.$('td.answer a')[0].href.match(/qr.ae/)) {
+            // needed since reference to 'this' is invalid after render exits
+            DOMref = this.$('td.answer a')[0];
+            $.ajax({
+                url:'/getfullurl',
+                type: 'get',
+                data : {
+                    url: DOMref.href
+                },
+                success : function (data) {
+                    DOMref.text = data;
+                },
+                error : function () {
+                }
+            });
+        }
         return this;
     }
 });
