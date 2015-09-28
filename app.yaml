@@ -13,10 +13,12 @@ handlers:
   static_files: static/images/\1
   upload: static/images/(.*.(jpg|svg|gif|png))
 - url: /*.otf
-  static_dir: fonts
+  static_dir: css/fonts
+  mime_type: application/font-sfnt
   expiration: "60d"
 - url: /*.ttf
-  static_dir: fonts
+  static_dir: css/fonts
+  mime_type: application/font-sfnt
   expiration: "60d"
 - url: /*.css
   static_dir: css
