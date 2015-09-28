@@ -22,6 +22,10 @@ function makeUserURL (str) {
     }
 }
 
+function getFormattedName (str) {
+    return str.split('com/')[1].split('-').filter (isNotInt).join(' ');
+}
+
 function makeURL(str) {
     if (isURL (str) || str.match('qr.ae') != null) {        
         var fullAnswerString = str; // TODO: get actual answer string from Quora
@@ -210,25 +214,45 @@ var ReportItemView = Parse.View.extend ({
         data.rating = (typeof (data.rating) == "number") ? round(data.rating, -2) : "Not rated";
         $(this.el).html(this.template (data));
         $('a').attr ("target","_blank");
-        var DOMref = undefined;
+        var answerDOMref = undefined, submitterDOMref = undefined;
 
         // Get full links for answers
         if (this.$('td.answer a')[0].href.match(/qr.ae/)) {
             // needed since reference to 'this' is invalid after render exits
-            DOMref = this.$('td.answer a')[0];
+            answerDOMref = this.$('td.answer a')[0];
             $.ajax({
                 url:'/getfullurl',
                 type: 'get',
                 data : {
-                    url: DOMref.href
+                    url: answerDOMref.href
                 },
                 success : function (data) {
-                    DOMref.text = data;
+                    answerDOMref.text = data;
                 },
                 error : function () {
                 }
             });
         }
+
+        // Get full links for submitter
+        if (this.$('td.submitter a')[0].href.match(/qr.ae/)) {
+            // needed since reference to 'this' is invalid after render exits
+            submitterDOMref = this.$('td.submitter a')[0];
+            $.ajax({
+                url:'/getfullurl',
+                type: 'get',
+                data : {
+                    url: submitterDOMref.href
+                },
+                success : function (data) {
+                    submitterDOMref.text = getFormattedName (data);
+                },
+                error : function () {
+                }
+            });
+        }
+
+
         return this;
     }
 });
