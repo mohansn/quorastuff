@@ -130,7 +130,7 @@ var EvaluateItemView = Parse.View.extend ({
         $(this.el).html(this.template (data));
         $('a').attr ("target","_blank"); // open link in a new tab/window
         if (currUser) {
-            if (data.ratings != undefined){
+            if (data.ratings != undefined && data.ratings[currUser.getUsername()] != undefined){                
                 if (data.isNew) {
                     this.$('input.rating').val(round(data.ratings[currUser.getUsername()]/1.05, -1));
                 } else {
@@ -217,42 +217,44 @@ var ReportItemView = Parse.View.extend ({
         var answerDOMref = undefined, submitterDOMref = undefined;
 
         // Get full links for answers
-        if (this.$('td.answer a')[0].href.match(/qr.ae/)) {
-            // needed since reference to 'this' is invalid after render exits
-            answerDOMref = this.$('td.answer a')[0];
-            $.ajax({
-                url:'/getfullurl',
-                type: 'get',
-                data : {
-                    url: answerDOMref.href
-                },
-                success : function (data) {
-                    answerDOMref.text = data;
-                },
-                error : function () {
-                }
-            });
+        if (this.$('td.answer a').length) {
+            if (this.$('td.answer a')[0].href.match(/qr.ae/)) {
+                // needed since reference to 'this' is invalid after render exits
+                answerDOMref = this.$('td.answer a')[0];
+                $.ajax({
+                    url:'/getfullurl',
+                    type: 'get',
+                    data : {
+                        url: answerDOMref.href
+                    },
+                    success : function (data) {
+                        answerDOMref.text = data;
+                    },
+                    error : function () {
+                    }
+                });
+            }
         }
-
+        
         // Get full links for submitter
-        if (this.$('td.submitter a')[0].href.match(/qr.ae/)) {
-            // needed since reference to 'this' is invalid after render exits
-            submitterDOMref = this.$('td.submitter a')[0];
-            $.ajax({
-                url:'/getfullurl',
-                type: 'get',
-                data : {
-                    url: submitterDOMref.href
-                },
-                success : function (data) {
-                    submitterDOMref.text = getFormattedName (data);
-                },
-                error : function () {
-                }
-            });
-        }
-
-
+        if (this.$('td.submitter a').length) {
+            if (this.$('td.submitter a')[0].href.match(/qr.ae/)) {
+                // needed since reference to 'this' is invalid after render exits
+                submitterDOMref = this.$('td.submitter a')[0];
+                $.ajax({
+                    url:'/getfullurl',
+                    type: 'get',
+                    data : {
+                        url: submitterDOMref.href
+                    },
+                    success : function (data) {
+                        submitterDOMref.text = getFormattedName (data);
+                    },
+                    error : function () {
+                    }
+                });
+            }
+        }     
         return this;
     }
 });
