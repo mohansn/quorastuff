@@ -190,8 +190,8 @@ class YSRT (webapp2.RequestHandler):
                     r.raise_for_status ()
                 else:
                     logging.info ("POST: answer 1 succeeded\n")
-                    
-            if (len(answer_2.strip()) == 2):
+
+            if (len(answer_2.strip()) == 0):
                 pass
             else:
                 r = requests.post ('https://api.parse.com/1/classes/Answer',
@@ -205,7 +205,7 @@ class YSRT (webapp2.RequestHandler):
                 else:
                     logging.info ("POST: answer 2 succeeded\n")
 
-            if (len(answer_3.strip()) == 2):
+            if (len(answer_3.strip()) == 0):
                 pass
             else:
                 r = requests.post ('https://api.parse.com/1/classes/Answer',
