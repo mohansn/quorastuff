@@ -144,21 +144,28 @@ var EvaluateItemView = Parse.View.extend ({
 
         var DOMref = undefined;
         // Get full links for answers
-        if (this.$('td.answer a')[0].href.match(/qr.ae/)) {
-            // needed since reference to 'this' is invalid after render exits
-            DOMref = this.$('td.answer a')[0];
-            $.ajax({
-                url:'/getfullurl',
-                type: 'get',
-                data : {
-                    url: DOMref.href
-                },
-                success : function (data) {
-                    DOMref.text = data;
-                },
-                error : function () {
-                }
-            });
+        if (this.$('td.answer a').length) {
+            if (this.$('td.answer a')[0].href.match(/qr.ae/)) {
+                // needed since reference to 'this' is invalid after render exits
+                DOMref = this.$('td.answer a')[0];
+                $.ajax({
+                    url:'/getfullurl',
+                    type: 'get',
+                    data : {
+                        url: DOMref.href
+                    },
+                    success : function (data) {
+                        console.log ("getting full answer link succeeded");
+                        console.log ("data : ");
+                        console.log (data);
+                        if (data.trim()) {
+                            DOMref.text = data;
+                        }
+                    },
+                    error : function () {
+                    }
+                });
+            }
         }
 
         return this;
