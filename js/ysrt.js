@@ -82,7 +82,7 @@ round = function (num, places) {
 }
 
 function daysSinceLastWed (d) {
-    if (d.getDay() >= 3) {
+    if (d.getDay() > 3) {
         return d.getDay() - 3;
     } else {
         return 4+d.getDay();
