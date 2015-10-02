@@ -166,6 +166,7 @@ class Webapp2 (webapp2.RequestHandler):
         
 class YSRT (webapp2.RequestHandler):
     def post (self):
+        self.response.headers.add_header("Access-Control-Allow-Origin", "*")
         answer_1 = cgi.escape (self.request.get ('answer_1'))
         answer_2 = cgi.escape (self.request.get ('answer_2'))
         answer_3 = cgi.escape (self.request.get ('answer_3'))
@@ -222,6 +223,7 @@ class YSRT (webapp2.RequestHandler):
         
     def get (self):
         with open ('ysrt.html', 'r') as fp:
+            self.response.headers.add_header("Access-Control-Allow-Origin", "*")
             self.response.write (fp.read())
             fp.close()
         
