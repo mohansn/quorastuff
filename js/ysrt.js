@@ -155,9 +155,6 @@ var EvaluateItemView = Parse.View.extend ({
                         url: DOMref.href
                     },
                     success : function (data) {
-                        console.log ("getting full answer link succeeded");
-                        console.log ("data : ");
-                        console.log (data);
                         if (data.trim()) {
                             DOMref.text = data;
                         }
