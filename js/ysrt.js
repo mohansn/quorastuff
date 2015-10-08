@@ -157,6 +157,7 @@ var EvaluateItemView = Parse.View.extend ({
                     success : function (data) {
                         if (data.trim()) {
                             DOMref.text = data;
+                            $('a').attr ("target","_blank"); // open link in a new tab/window
                         }
                     },
                     error : function () {
