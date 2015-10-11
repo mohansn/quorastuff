@@ -27,6 +27,7 @@ handlers:
   static_dir: js
 - url: /.*
   script: quorastuff.application
+  secure: optional
 
 libraries:
 - name: webapp2
