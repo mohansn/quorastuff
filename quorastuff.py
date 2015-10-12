@@ -226,7 +226,14 @@ class YSRT (webapp2.RequestHandler):
             self.response.headers.add_header("Access-Control-Allow-Origin", "*")
             self.response.write (fp.read())
             fp.close()
-        
+
+class YSRTSUB (webapp2.RequestHandler):
+    def get (self):
+        with open ('submitYSRT.html') as fp:
+            self.response.write (fp.read())
+            fp.close()
+
+
 application = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/howdy', Howdy),
@@ -249,6 +256,7 @@ application = webapp2.WSGIApplication([
     ('/hbdsh', HBDSH),
     ('/hbddmk', HBDDMK),
     ('/hbdkgn', HBDKGN),
-    ('/ysrt', YSRT)
+    ('/ysrt', YSRT),
+    ('/ysrtsub',YSRTSUB)
 ], debug=True)
 
