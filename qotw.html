@@ -5,9 +5,45 @@
     <title>Quorans Of The Week</title>
     <link rel="shortcut icon" type="image/x-icon" href="static/images/favicon.ico">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/calligraphy.css">
-    <link rel="stylesheet" type="text/css" href="css/hover-min.css">
+
     <style>
+      @font-face {
+          font-family: 'GreatVibes-Regular';
+  	  src:url('fonts/GreatVibes-Regular.otf');
+      }
+
+      .hvr-bounce-in {
+          display:inline-block;
+          vertical-align:middle;
+          -webkit-transform:translateZ(0);
+          transform:translateZ(0);
+          box-shadow:0 0 1px rgba(0,0,0,0);
+          -webkit-backface-visibility:hidden;
+          backface-visibility:hidden;
+          -moz-osx-font-smoothing:grayscale;
+          -webkit-transition-duration:.5s;
+          transition-duration:.5s
+      }
+      /*!
+        .hvr-bounce-in taken from hover.css. Details below:
+      * Hover.css (http://ianlunn.github.io/Hover/)
+      * Version: 2.0.1
+      * Author: Ian Lunn @IanLunn
+      * Author URL: http://ianlunn.co.uk/
+      * Github: https://github.com/IanLunn/Hover
+
+      * Made available under a MIT License:
+      * http://www.opensource.org/licenses/mit-license.php
+
+      * Hover.css Copyright Ian Lunn 2014. Generated with Sass.
+      */
+      .hvr-bounce-in:active,.hvr-bounce-in:focus,.hvr-bounce-in:hover {
+          -webkit-transform:scale(1.2);
+          transform:scale(1.2);
+          -webkit-transition-timing-function:cubic-bezier(0.47,2.02,.31,-.36);
+          transition-timing-function:cubic-bezier(0.47,2.02,.31,-.36)
+      }
+      
       img {
          height:250px;
          width:250px;
@@ -21,13 +57,12 @@
           display:inline;
       }
       h1 {
-          font-family:'Great Vibes';
+          font-family:'Great Vibes',Palatino, Georgia, serif;
       }
       .jumbotron {
           background-color:#491834;
           color:#6E7577;
 //          color:white;
-      
       }
       #QOTWtable {
           width:70%;
@@ -35,6 +70,13 @@
       }
       #QOTWtable td,th {
           text-align:center;
+      }
+      .navbar-collapse.collapse {
+          display: block !important;
+      }
+
+      .navbar-nav>li, .navbar-nav {
+          float: left !important;
       }
     </style>
   </head>

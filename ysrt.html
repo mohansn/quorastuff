@@ -1,0 +1,252 @@
+<!doctype HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/fonts.css">
+    <!--link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css"-->
+    <title>You Should Read This!</title>
+    <style>
+      th {
+          text-align:center;
+      }
+      .older, .answer, .timestamp {
+          text-align:center;
+      }
+      th.older {
+          word-wrap:break-word;
+      }
+      .older {
+          width: 20%;
+      }
+      .answer {
+//          width:50%;
+      }
+      .submitter {
+          width:20%;
+      }
+      .rating {
+          width:10%;
+      }
+      .timestamp {
+          width:30%;
+      }
+      .submit {
+          text-align:left;
+          width:100px;
+      }
+      body {
+          margin:0 50px;
+      }
+      table {
+          width:80%;
+          table-layout:fixed;
+          border-collapse:collapse;
+      }
+      td {
+          overflow:hidden;
+          word-wrap:break-word;
+          padding: 0.5em 0 0.5em 0;
+          text-align:center;
+      }
+      td.rating, input.rating, td.submit {
+          width:40px;
+          text-align:center;
+      }
+    /*  
+      div#loginView {
+      display:block;
+      width:50%;
+      margin:auto;
+      overflow:auto;
+      margin-top:15%;
+      border:2px solid palegreen;
+      text-align:center;
+      }
+      */
+      .jumbotron {
+      /*
+          border:2px solid;
+          border-radius:20px;
+          margin-top:50px;
+      */
+          font-family:'raleway';
+      }
+      div#choices {
+          display:none;
+          width:100vw;
+          height:100vh;
+      }
+      div#choices > div {
+          display:flex;
+          justify-content:center;
+          align-items:center;
+          width:100vw;
+          height:100vh;
+      }
+      div#choices button {
+          height:40vh;
+          width:20vw;
+          margin:10vw;
+          border-radius:10%;
+          font-size:2em;
+          font-family:'Open Sans';
+          text-transform:uppercase;
+          letter-spacing:0.1rem;
+      }
+
+      div#choices h1 {
+          font-family:raleway;
+          font-size:4em;
+          text-align:center;
+      }
+
+      div#rate-answers-header {
+          display:none;
+      }
+      div#view-answers-header {
+          display:none;
+      }
+      div#login-container {
+          display:none;
+      }
+      nav#switch {
+          display:none;
+      }
+      @media (max-width:768px) {
+          td,th {
+              overflow:hidden;
+              word-wrap:break-word;
+              padding: 20px 0;
+              text-align:center;
+          }
+
+          table {
+              width:95%;
+          }
+          body {
+              margin:0 10px;
+          }
+          .answer {
+              width:80px;
+              overflow:hidden;
+          }
+          td.rating, th.rating {
+              width:25px;
+          }
+          td.older, th.older, input.older {
+              width:25px;
+          }
+          .submit {
+              width:50px;
+          }
+          .timestamp {
+              display:none;
+              visibility:hidden;
+          }
+          #table-view-answers {
+              th:last-child, td:last-child {
+              }    
+          }
+          #table-view-answers > thead > tr > th:nth-child(5),
+          #table-view-answers > tbody > tr > td:nth-child(5) {
+              display:none;
+              visibility:hidden;              
+          }
+
+          #view-answers-header, #rate-answers-header {
+              padding-top:40px;
+          }
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script src="js/parse-1.2.13.min.js"></script>
+    <!--script src="js/parse-1.6.2.js"></script-->
+    <script src="js/fb_ysrt.js"></script>
+    <script src="js/ysrt.js"></script>
+  </head>
+  <body>
+    <nav id="switch" class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <button type="button" id="nav" class="btn btn-primary btn-lg navbar-btn"></button>
+        <button type="button" id="logout" class="btn btn-info btn-lg navbar-btn"></button>
+      </div>
+    </nav>
+    <div id="login-container" class="panel container-fluid">
+      <div class="jumbotron well-lg">
+        <h1> Welcome!</h1>
+        <p>
+          Log in to view nominated answers, rate them, and to view current ratings.
+        </p>
+      </div>
+      <div id="loginView">
+        <!--div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="true"></div-->
+        <div id="fblogin">
+          <button class="btn-lg btn-primary">Log in with Facebook</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="choices" class="container">
+      <h1>Make your choice</h1>
+      <div>
+        <button class="btn-primary" id="btn-rate">Rate</button>
+        <button class="btn-primary" id="btn-view">View</button>
+      </div>
+    </div>
+
+    <div id="rate-answers-header" class="table-responsive">
+      <h1> Answers for your review </h1>
+      <table class="table table-bordered table-hover" id="table-rate-answers">
+        <thead>
+          <tr>
+            <th class="answer"> Answer URL </th>
+            <th class="rating"> Rating </th>
+            <th class="older"> Is this answer recent?<br> (less than 30 days old) </th>
+            <th class="submit"> Submit Rating </th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="view-answers-header" class="table-responsive">
+      <h1> Answers with their ratings </h1>
+      <table class="table table-bordered table-hover" id="table-view-answers">
+        <thead>
+          <tr>
+            <th class="timestamp"> Submitted at </td>
+            <th class="answer"> Answer URL </th>
+            <th class="submitter"> Submitter </th>
+            <th class="rating"> Rating </th>
+            <th> Comments </th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+    
+    <script type="text-template" id="rate-item-template">
+        <td class="answer"> <%= answer %> </td>
+        <td class="rating"><input class="rating" type="text"/></td>
+        <td class="older"><input class="older" type="checkbox"/></td>
+        <td class="submit"><button type="submit" class="btn btn-primary">Submit</button></td>
+    </script>
+
+    <script type="text-template" id="view-item-template">
+        <td class="timestamp"> <%= createdAt %></td>
+        <td class="answer">    <%= answer %> </td>
+        <td class="submitter"> <%= submitter %> </td>
+        <td class="rating" >   <%= rating %></td>
+        <td>                   <%= comments %></td>
+    </script>
+
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
+
+

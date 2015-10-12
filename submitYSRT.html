@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html>
+  <body>
+    <p> Drag this to the bookmarks bar to nominate answers for You Should Read This!</p>
+    <a href="javascript:(function() {
+                 var msg = window.jQuery.ajax({url:'https://www.quora.com/api/logged_in_user',async:false,type:'GET'});
+                 var username = undefined;
+                 if (msg) {
+                     if (window.confirm('You are submitting \n' + window.location.href + ' to You Should Read This!\n\nProceed?')) {
+                         username = window.jQuery.parseJSON(msg.responseText.replace('while(1);',''));
+                         window.jQuery.post('https://quorastuff.appspot.com/ysrt', {'answer_1':window.location.href,'submitter':username.name});
+                         }
+                 }
+                         })();">You Should Read This!</a>
+
+  </body>
+</html>
+
+  
