@@ -4,8 +4,7 @@
     <meta name=viewport content="width=device-width, initial-scale=1">
     <title>Quorans Of The Week</title>
     <link rel="shortcut icon" type="image/x-icon" href="static/images/favicon.ico">
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
+    
     <style>
       @font-face {
           font-family: 'GreatVibes-Regular';
@@ -313,6 +312,18 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script>
+      // https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery
+      var cb = function() {
+          var l = document.createElement('link'); l.rel = 'stylesheet';
+          l.href = 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css';
+          var h = document.getElementsByTagName('head')[0]; h.parentNode.insertBefore(l, h);
+      };
+      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+          webkitRequestAnimationFrame || msRequestAnimationFrame;
+      if (raf)
+          raf(cb);
+      else
+          window.addEventListener('load', cb);
       $(document).ready (function () {
           setDisplay (0);
           $('#qotws li').addClass ('hvr-bounce-in');
