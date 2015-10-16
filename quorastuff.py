@@ -192,7 +192,13 @@ class YSRT (webapp2.RequestHandler):
                 else:
                     logging.info ("POST: answer 1 succeeded\n")
 
-            if (len(answer_2.strip()) == 2):
+#            We get a string with escaped double quotes when an blank (no) answer is submitted
+#            via the form. The length of this string is 2
+#            We get *no* string for fields answer_2 and answer_3 when an answer is submitted
+#            via the bookmarklet. The length is zero in this case.
+#            Hence, we check for lengths 0 and 2 (checking for <= 2 does both).
+
+            if (len(answer_2.strip()) <= 2):
                 pass
             else:
                 r = requests.post ('https://api.parse.com/1/classes/Answer',
@@ -206,7 +212,8 @@ class YSRT (webapp2.RequestHandler):
                 else:
                     logging.info ("POST: answer 2 succeeded\n")
 
-            if (len(answer_3.strip()) == 2):
+#           Same logic as for answer_2
+            if (len(answer_3.strip()) <= 2):
                 pass
             else:
                 r = requests.post ('https://api.parse.com/1/classes/Answer',
