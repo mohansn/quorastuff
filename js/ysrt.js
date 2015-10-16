@@ -137,7 +137,6 @@ var EvaluateItemView = Parse.View.extend ({
                 } else {
                     this.$('input.rating').val(round(data.ratings[currUser.getUsername()], -1));
                 }
-                console.log (this.$('input.submit'));
                 this.$('.submit button').removeClass('btn-primary').addClass('btn-success').text("Resubmit");
             }
         }
@@ -191,8 +190,8 @@ var EvaluateItemView = Parse.View.extend ({
         this.model.save({"ratings":ratings, "rating":avgRating, "isNew":isNew},
                         {
                             success: function () {
-                                alert ("Data saved successfully!");
                                 submitButton.removeClass('btn-primary').addClass('btn-success').text('Resubmit');
+                                alert ("Data saved successfully!");
                             },
                             error : function () {
                                 alert ("Error saving data. Please try again.");
