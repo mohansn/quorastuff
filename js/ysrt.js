@@ -130,12 +130,15 @@ var EvaluateItemView = Parse.View.extend ({
         $(this.el).html(this.template (data));
         $('a').attr ("target","_blank"); // open link in a new tab/window
         if (currUser) {
-            if (data.ratings != undefined && data.ratings[currUser.getUsername()] != undefined){                
+            if (data.ratings != undefined && data.ratings[currUser.getUsername()] != undefined){
+                // Show previously submitted  rating
                 if (data.isNew) {
                     this.$('input.rating').val(round(data.ratings[currUser.getUsername()]/1.05, -1));
                 } else {
                     this.$('input.rating').val(round(data.ratings[currUser.getUsername()], -1));
                 }
+                console.log (this.$('input.submit'));
+                this.$('.submit button').removeClass('btn-primary').addClass('btn-success').text("Resubmit");
             }
         }
         if (data.isNew != undefined) {
@@ -184,10 +187,12 @@ var EvaluateItemView = Parse.View.extend ({
         ratings = (ratings == undefined)? {} : ratings;
         ratings[currentName] = rating;
         var avgRating = average (_.values(ratings));
+        var submitButton = this.$('.submit button');
         this.model.save({"ratings":ratings, "rating":avgRating, "isNew":isNew},
                         {
                             success: function () {
                                 alert ("Data saved successfully!");
+                                submitButton.removeClass('btn-primary').addClass('btn-success').text('Resubmit');
                             },
                             error : function () {
                                 alert ("Error saving data. Please try again.");
