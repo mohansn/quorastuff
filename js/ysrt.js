@@ -187,6 +187,7 @@ var EvaluateItemView = Parse.View.extend ({
         ratings[currentName] = rating;
         var avgRating = average (_.values(ratings));
         var submitButton = this.$('.submit button');
+        submitButton.text ("Submitting...");
         this.model.save({"ratings":ratings, "rating":avgRating, "isNew":isNew},
                         {
                             success: function () {
@@ -194,6 +195,7 @@ var EvaluateItemView = Parse.View.extend ({
                                 alert ("Data saved successfully!");
                             },
                             error : function () {
+                                submitButton.text ("Submit");
                                 alert ("Error saving data. Please try again.");
                             }
                         });
