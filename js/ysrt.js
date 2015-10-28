@@ -12,7 +12,12 @@ function isNotInt (s) {
 
 function makeUserURL (str) {
     if (isURL (str) && str.match('qr.ae') == null) {
-        var namepart = str.split("com/")[1];
+        var namepart = null;
+        if (str.match ('com/profile/')) {
+            namepart = str.split("com/profile/")[1];
+        } else {
+            namepart = str.split("com/")[1];
+        }
         var name = namepart.split("-").filter (isNotInt).join (" ");
         return name.link (str);
     } else if (isURL (str) && str.match('qr.ae') != null) {
@@ -23,7 +28,11 @@ function makeUserURL (str) {
 }
 
 function getFormattedName (str) {
-    return str.split('com/')[1].split('-').filter (isNotInt).join(' ');
+    if (str.match ('com/profile/')) {
+        return str.split('com/profile/')[1].split('-').filter (isNotInt).join(' ');
+    } else {
+        return str.split('com/')[1].split('-').filter (isNotInt).join(' ');
+    }
 }
 
 function makeURL(str) {
