@@ -12,6 +12,7 @@ handlers:
 - url: /(.*.(jpg|svg|gif|png))
   static_files: static/images/\1
   upload: static/images/(.*.(jpg|svg|gif|png))
+  expiration: "10m"
 - url: /*.otf
   static_dir: css/fonts
   mime_type: application/font-sfnt
