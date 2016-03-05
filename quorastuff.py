@@ -246,6 +246,11 @@ class YSRTSUB (webapp2.RequestHandler):
             self.response.write (fp.read())
             fp.close()
 
+class QOTWApp (webapp2.RequestHandler):
+    def get (self):
+        with open ('qotwapp.html') as fp:
+            self.response.write (fp.read())
+            fp.close()
 
 application = webapp2.WSGIApplication([
     ('/', MainPage),
@@ -271,6 +276,7 @@ application = webapp2.WSGIApplication([
     ('/hbddmk', HBDDMK),
     ('/hbdkgn', HBDKGN),
     ('/ysrt', YSRT),
-    ('/ysrtsub',YSRTSUB)
+    ('/ysrtsub',YSRTSUB),
+    ('/qotw', QOTWApp)
 ], debug=True)
 
