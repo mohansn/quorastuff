@@ -1,0 +1,134 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Quoran Of The Week!</title>
+    <meta name="description" content="Triaging, Rating, and viewing ratings for Quoran of the Week">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/normalize.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
+      <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+      <script src="js/underscore.js"></script>
+      <script src="js/backbone.js"></script>
+      <script src="https://cdn.firebase.com/js/client/2.4.0/firebase.js"></script>
+      <!-- BackboneFire -->
+      <script src="https://cdn.firebase.com/libs/backbonefire/0.5.1/backbonefire.js"></script>
+      <style>
+        #LoginView, #ChoiceView, #SwitchView, #table-view, #table-rate {
+        display:none;
+        }
+      </style>
+  </head>
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <script>
+      <!-- Load FB sdk -->
+      window.fbAsyncInit = function() {
+      FB.init({
+      appId      : '882790978508103',
+      xfbml      : true,
+      version    : 'v2.5'
+      });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <script src="js/qotw_utils.js"></script>
+    <script src="js/qotw.js"></script>
+
+    <div class="header-container">
+      <header class="wrapper clearfix">
+        <h1 class="title">Quoran of the Day App!</h1>
+      </header>
+    </div>
+
+    <div class="main-container">
+      <div class="main wrapper clearfix">
+        <div id="LoginView">
+          <!--div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="true"></div-->
+          <div id="fblogin">
+            <button class="btn-lg btn-primary">Log in with Facebook</button>
+          </div>
+        </div> <!-- Login -->
+        <div id="SwitchView">
+          <button class="btn-lg btn-primary" id="btn-toggle">Restart</button>
+          <button class="btn-lg btn-primary" id="btn-logout">Logout</button>
+        </div>
+        <div id="ChoiceView" class="container">
+          <h1>Make your choice</h1>
+          <div>
+            <button class="btn-lg btn-primary" id="btn-rate">Rate</button>
+            <button class="btn-lg btn-primary" id="btn-view">View</button>
+          </div>
+        </div>
+        <table class="table table-bordered table-hover" id="table-rate">
+          <thead>
+            <th class="nominee"> Nominee</th>
+            <th class="nominator">Nominator</th>
+            <th class="quality">Quality</th>
+            <th class="presentation">Presentation</th>
+            <th class="ce"> Community <br/> Engagement</th>
+            <th class="niche niche-geo"> Niche <br/> Geo</th>
+            <th class="niche niche-topics"> Niche <br/> Topic</th>
+            <th class="niche bnbr"> BNBR?</th>
+            <th class="submit"></th>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>  <!-- table-rate -->
+        
+        <script type="text-template" id="rate-template">
+          <td class="nominee"> <%= nominee.name %></td>
+          <td class="nominator"><%= nominator.name %></td>
+          <td class="quality"> <input type="text"/>   </td>
+          <td class="presentation"><input type="text" /></td>
+          <td class="ce"> <input type="text" /> </td>
+          <td class="niche niche-geo">  <input type="checkbox" /> </td>
+          <td class="niche niche-topics">  <input type="checkbox" /> </td>
+          <td class="niche bnbr">  <input type="checkbox" /> </td>
+          <td class="submit"><button type="submit" class="btn btn-primary">Submit</button></td>
+        </script>
+
+        <table class="table table-bordered table-hover" id="table-view">
+          <thead>
+            <tr>
+              <th class="nominee"> Nominee</th>
+              <th class="nominator">Nominator</th>
+              <th class="quality">Average <br/>Score</th>
+              <th class="disposed"> Featured or <br/>rejected?</th>
+              <th class="submit">Submit</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+
+        <script type="text-template" id="view-template">
+          <td class="nominee"> <%= nominee.name %></td>
+          <td class="nominator"><%= nominator.name %></td>
+          <td class="quality"> <%= averageScore %>  </td>  <!-- For average score -->
+          <td class="disposed"> <input type="checkbox"/> </td>
+          <td class="submit"><button type="submit" class="btn btn-primary">Submit</button></td>
+        </script>
+      </div>
+  </body>
+</html>
