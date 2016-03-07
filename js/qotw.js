@@ -130,6 +130,7 @@ var ReportItemView = Backbone.View.extend ({
     },
     initialize : function () {
         this.template = _.template ($('#view-template').html());
+        _.bindAll (this, "render");
         this.listenTo (this.model, "change", this.render);
     },
     render : function () {
@@ -145,9 +146,11 @@ var ReportItemView = Backbone.View.extend ({
         $(this.el).html(this.template (data));
         return this;
     },
-    submitDisposition : function () {
+    SubmitDisposition : function () {
+        console.log (this);
+        console.log (this.model);
         var submitButton = this.$('.submit button');
-        this.model.set ('disposed', this.$('td.disposed input')[0].checked);
+        this.model.set ('disposed', this.$('td.disposed > input')[0].checked);
         this.model.save (null,{
             success: function (model, response, options) {
                 submitButton.removeClass('btn-primary').addClass('btn-success').text('Resubmit');
@@ -193,7 +196,14 @@ var EvaluateView = Backbone.View.extend({
         this.listenTo (this.collection, 'change', this.addOne);
         this.listenTo (this.collection, 'child_added', this.addOne);
         $('#table-rate').show();
-        _.each (this.collection.models, this.addOne);
+        _.each(
+            _.filter(
+                this.collection.models,
+                      function (model) {
+                          var ret = model.get('disposed');
+                          return (ret == false) || (ret == undefined);
+                      }),
+            this.addOne);
     },
     addOne : function (item) {
         var view = new RateItemView ({model:item});
