@@ -147,8 +147,6 @@ var ReportItemView = Backbone.View.extend ({
         return this;
     },
     SubmitDisposition : function () {
-        console.log (this);
-        console.log (this.model);
         var submitButton = this.$('.submit button');
         this.model.set ('disposed', this.$('td.disposed > input')[0].checked);
         this.model.save (null,{
