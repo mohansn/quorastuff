@@ -170,15 +170,19 @@ var ReportView = Backbone.View.extend({
         this.listenTo (this.collection, 'sync', this.addOne);
         $('#table-view').show();
         _.each(
-            _.filter(
-                this.collection.models,
-                      function (model) {
-                          var isDisposed = model.get('disposed');
-                          var ratings = model.get ('ratings');
-                          if (ratings.length > 5 && average (_.pluck (ratings, 'score')) < 7.5)
-                              return false;
-                          return (isDisposed == false) || (isDisposed == undefined);
-                      }),
+            _.sortBy(
+                _.filter(
+                    this.collection.models,
+                    function (model) {
+                        var isDisposed = model.get('disposed');
+                        var ratings = model.get ('ratings');
+                        if (ratings.length > 5 && average (_.pluck (ratings, 'score')) < 7.5)
+                            return false;
+                        return (isDisposed == false) || (isDisposed == undefined);
+                    }),
+                function (model) {
+                    return -average(_.pluck(model.get('ratings'), 'score'));
+                }),
             this.addOne);
     },
     addOne : function(item) {
