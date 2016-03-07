@@ -140,7 +140,16 @@ var ReportItemView = Backbone.View.extend ({
         data.nominator = {};
         data.nominee.name = MakeUserURL(modeldata.nominee.url)
         data.nominator.name = MakeUserURL(modeldata.nominator.url)
-        data.averageScore = round(average(_.pluck (modeldata.ratings, 'score')), 2);
+        var scores = _.pluck (modeldata.ratings, 'score');
+        if (scores.length > 0) {
+            if (scores.length == 1) {
+                data.averageScore = round(average(scores), 2) + "      " + "(1 vote)";
+            } else {
+                data.averageScore = round(average(scores), 2) + "      (" + scores.length + " votes cast)";
+            }
+        } else {
+            data.averageScore = round(average(scores), 2);
+        }
         
         $('a').attr ("target","_blank");
         $(this.el).html(this.template (data));
