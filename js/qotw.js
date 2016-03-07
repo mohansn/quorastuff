@@ -140,7 +140,7 @@ var ReportItemView = Backbone.View.extend ({
         data.nominator = {};
         data.nominee.name = MakeUserURL(modeldata.nominee.url)
         data.nominator.name = MakeUserURL(modeldata.nominator.url)
-        data.averageScore = average(_.pluck (modeldata.ratings, 'score'));
+        data.averageScore = round(average(_.pluck (modeldata.ratings, 'score')), 2);
         
         $('a').attr ("target","_blank");
         $(this.el).html(this.template (data));
