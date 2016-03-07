@@ -173,8 +173,11 @@ var ReportView = Backbone.View.extend({
             _.filter(
                 this.collection.models,
                       function (model) {
-                          var ret = model.get('disposed');
-                          return (ret == false) || (ret == undefined);
+                          var isDisposed = model.get('disposed');
+                          var ratings = model.get ('ratings');
+                          if (ratings.length > 5 && average (_.pluck (ratings, 'score')) < 7.5)
+                              return false;
+                          return (isDisposed == false) || (isDisposed == undefined);
                       }),
             this.addOne);
     },
