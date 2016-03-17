@@ -114,8 +114,8 @@
               <th class="nominee"> Nominee</th>
               <th class="nominator">Nominator</th>
               <th class="quality">Average <br/>Score</th>
-              <th class="disposed"> Featured or <br/>rejected?</th>
-              <th class="submit">Submit</th>
+              <!--th class="disposed"> Featured or <br/>rejected?</th-->
+              <th class="submit">If we have either <br/> featured or declined <br/> a nominee, please click Submit below to remove from view</th>
             </tr>
           </thead>
           <tbody>
@@ -126,7 +126,7 @@
           <td class="nominee"> <%= nominee.name %></td>
           <td class="nominator"><%= nominator.name %></td>
           <td class="quality"> <%= averageScore %>  </td>  <!-- For average score -->
-          <td class="disposed"> <input type="checkbox"/> </td>
+          <!--td class="disposed"> <input type="checkbox"/> </td-->
           <td class="submit"><button type="submit" class="btn btn-primary">Submit</button></td>
         </script>
       </div>

@@ -134,6 +134,7 @@ var ReportItemView = Backbone.View.extend ({
         this.listenTo (this.model, "change", this.render);
     },
     render : function () {
+        $('a').attr ("target","_blank");
         var modeldata = this.model.toJSON();
         var data = {};
         data.nominee = {};
@@ -150,14 +151,12 @@ var ReportItemView = Backbone.View.extend ({
         } else {
             data.averageScore = round(average(scores), 2);
         }
-        
-        $('a').attr ("target","_blank");
         $(this.el).html(this.template (data));
         return this;
     },
     SubmitDisposition : function () {
         var submitButton = this.$('.submit button');
-        this.model.set ('disposed', this.$('td.disposed > input')[0].checked);
+        this.model.set ('disposed', true);
         this.model.save (null,{
             success: function (model, response, options) {
                 submitButton.removeClass('btn-primary').addClass('btn-success').text('Resubmit');
@@ -193,6 +192,7 @@ var ReportView = Backbone.View.extend({
                     return -average(_.pluck(model.get('ratings'), 'score'));
                 }),
             this.addOne);
+        $('a').attr ("target","_blank");
     },
     addOne : function(item) {
         var view = new ReportItemView ({model:item});
@@ -256,6 +256,7 @@ var ChoiceView = Backbone.View.extend({
 });
 
 $(document).ready(function() {
+    $('a').attr ("target","_blank");
     $('#btn-logout').on ('click', function () {
         ref.unauth();
         window.location.href = 'https://quorastuff.appspot.com/qotw';
