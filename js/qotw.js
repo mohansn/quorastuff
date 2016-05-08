@@ -70,6 +70,14 @@ var RateItemView = Backbone.View.extend ({
         data.nominator.name = MakeUserURL(data.nominator.url)
 //        $(this.el).html(this.template (this.model.attributes));
         $('a').attr ("target","_blank");
+        data.ratedBy = "No one yet";
+        
+        if (data.ratings) {
+            data.ratedBy = _.map(_.keys(data.ratings),
+                                 function (name) {
+                                     return name.split(' ')[0];
+                                 });
+        }
         $(this.el).html(this.template (data));
         if (data.ratings[currUserName]) {
             this.$('td.quality input').val (data.ratings[currUserName].quality);
@@ -78,6 +86,7 @@ var RateItemView = Backbone.View.extend ({
             this.$('td.geo input').checked = data.ratings[currUserName].geo;
             this.$('td.niche-topics input').checked = data.ratings[currUserName].nichetopics;
             this.$('td.bnbr input').checked = data.ratings[currUserName].bnbr;
+            this.$('.submit button').removeClass('btn-primary').addClass('btn-success').text('Resubmit');
         }
         return this;
     },
